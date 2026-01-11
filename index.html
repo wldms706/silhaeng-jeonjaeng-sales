@@ -910,34 +910,15 @@
             }
         }
 
-        // 버튼 상태 업데이트
+        // 버튼 상태 업데이트 (마감 없이 계속 신청 가능)
         function updateButtonState(appCount) {
-            if (appCount >= MAX_APPLICATIONS) {
-                // 마감 처리
-                if (applyBtn) {
-                    applyBtn.classList.add('btn-disabled');
-                    applyBtn.textContent = '1기 모집 마감';
-                    applyBtn.removeAttribute('href');
-                    applyBtn.style.pointerEvents = 'none';
-                }
-                if (applyBtnFinal) {
-                    applyBtnFinal.classList.add('btn-disabled');
-                    applyBtnFinal.textContent = '1기 모집 마감';
-                    applyBtnFinal.removeAttribute('href');
-                    applyBtnFinal.style.pointerEvents = 'none';
-                }
-                if (urgencyText) {
-                    urgencyText.textContent = '모집 마감';
-                    urgencyText.classList.add('closed');
-                }
-                if (urgencyTextFinal) {
-                    urgencyTextFinal.textContent = '모집 마감';
-                }
-            } else {
-                // 남은 자리 표시
-                const remaining = MAX_APPLICATIONS - appCount;
-                if (urgencyText) {
+            // 남은 자리 표시만 업데이트 (자동 마감 없음)
+            const remaining = MAX_APPLICATIONS - appCount;
+            if (urgencyText) {
+                if (remaining > 0) {
                     urgencyText.textContent = `선착순 ${remaining}자리 남음`;
+                } else {
+                    urgencyText.textContent = `마감 임박`;
                 }
             }
         }
