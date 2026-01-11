@@ -811,16 +811,16 @@
             const diagnosisResultEl = document.getElementById('diagnosisResult');
             const scrollToResultBtn = document.getElementById('scrollToResult');
 
-            // 진단 결과에 따른 CTA 버튼 상태 관리
-            window.isDiagnosisPassed = false;
+            // 진단 결과 상태: "disabled" | "conditional" | "enabled"
+            window.diagnosisState = 'disabled';
 
             function updateDiagnosis() {
-                const checkedCount = document.querySelectorAll('.diagnosis-checkbox:checked').length;
-                console.log('체크된 항목 수:', checkedCount); // 디버깅용
+                const n = [...checkboxes].filter(cb => cb.checked).length;
+                console.log('체크된 항목 수:', n);
 
                 // 체크 개수 표시
                 if (checkedCountEl) {
-                    checkedCountEl.textContent = checkedCount;
+                    checkedCountEl.textContent = n;
                 }
 
                 // 결과 박스 항상 표시
@@ -830,48 +830,56 @@
 
                 // 결과 보러가기 버튼 표시/숨김
                 if (scrollToResultBtn) {
-                    scrollToResultBtn.style.display = checkedCount > 0 ? 'block' : 'none';
+                    scrollToResultBtn.style.display = n > 0 ? 'block' : 'none';
                 }
 
-                // 결과 분기 처리
-                if (checkedCount === 0) {
-                    // 초기 상태
+                // 3구간 분기 처리
+                if (n <= 3) {
+                    // 불가 상태 (0~3개)
+                    if (diagnosisMessageEl) {
+                        if (n === 0) {
+                            diagnosisMessageEl.innerHTML = `
+                                <p class="result-title">체크박스를 선택해주세요</p>
+                                <p class="result-subtitle">위 항목 중 해당되는 것을 체크하면 결과가 표시됩니다.</p>
+                            `;
+                        } else {
+                            diagnosisMessageEl.innerHTML = `
+                                <p class="result-title">아직은 신청이 어렵습니다.</p>
+                                <p class="result-subtitle">현재 단계에서는 즉시 효과가 미미할 수 있어요.<br>기본 세팅부터 정리한 뒤 다시 오세요.</p>
+                            `;
+                        }
+                    }
+                    if (diagnosisResultEl) {
+                        diagnosisResultEl.classList.remove('result-good', 'result-conditional');
+                        diagnosisResultEl.classList.add('result-wait');
+                    }
+                    window.diagnosisState = 'disabled';
+                } else if (n <= 6) {
+                    // 조건부 가능 (4~6개)
                     if (diagnosisMessageEl) {
                         diagnosisMessageEl.innerHTML = `
-                            <p class="result-title">체크박스를 선택해주세요</p>
-                            <p class="result-subtitle">위 항목 중 해당되는 것을 체크하면 결과가 표시됩니다.</p>
+                            <p class="result-title">조건부로 가능해요.</p>
+                            <p class="result-subtitle">가능은 하지만, 초기 2주 성과가 미미할 수 있어요.<br>상담에서 현재 상태를 먼저 점검합니다.</p>
                         `;
                     }
                     if (diagnosisResultEl) {
                         diagnosisResultEl.classList.remove('result-good', 'result-wait');
+                        diagnosisResultEl.classList.add('result-conditional');
                     }
-                    window.isDiagnosisPassed = false;
-                } else if (checkedCount >= 5) {
-                    // 합격/권장 상태
-                    if (diagnosisMessageEl) {
-                        diagnosisMessageEl.innerHTML = `
-                            <p class="result-title">지금 이 프로그램과 잘 맞습니다.</p>
-                            <p class="result-subtitle">즉각적인 성과보다 실행 습관과 구조를 먼저 만들 준비가 되어 있습니다.<br>네, 저와 함께 가시죠.</p>
-                        `;
-                    }
-                    if (diagnosisResultEl) {
-                        diagnosisResultEl.classList.add('result-good');
-                        diagnosisResultEl.classList.remove('result-wait');
-                    }
-                    window.isDiagnosisPassed = true;
+                    window.diagnosisState = 'conditional';
                 } else {
-                    // 보류/준비 단계 (1~4개)
+                    // 가능 상태 (7~10개)
                     if (diagnosisMessageEl) {
                         diagnosisMessageEl.innerHTML = `
-                            <p class="result-title">아직은 준비 단계일 수 있습니다.</p>
-                            <p class="result-subtitle">기초를 다진 후 다시 신청해 주세요.<br>(${5 - checkedCount}개 더 체크하면 참여 가능)</p>
+                            <p class="result-title">지금 시작하면 가장 잘 맞습니다.</p>
+                            <p class="result-subtitle">실행 습관과 구조를 만들 준비가 되어 있어요.<br>네, 저와 함께 가시죠.</p>
                         `;
                     }
                     if (diagnosisResultEl) {
-                        diagnosisResultEl.classList.add('result-wait');
-                        diagnosisResultEl.classList.remove('result-good');
+                        diagnosisResultEl.classList.remove('result-wait', 'result-conditional');
+                        diagnosisResultEl.classList.add('result-good');
                     }
-                    window.isDiagnosisPassed = false;
+                    window.diagnosisState = 'enabled';
                 }
             }
 
@@ -1016,8 +1024,9 @@
 
             // 신청 버튼 클릭 이벤트 (진단 결과 체크)
             function handleApplyClick(e) {
-                // 진단 테스트 미통과 시 토스트 표시 (신청은 허용)
-                if (!window.isDiagnosisPassed) {
+                // 진단 상태에 따른 처리
+                // disabled: 토스트 표시, conditional/enabled: 바로 신청
+                if (window.diagnosisState === 'disabled') {
                     showToast();
                 }
                 recordClick();

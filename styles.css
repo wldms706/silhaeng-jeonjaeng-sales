@@ -2635,7 +2635,7 @@ strong {
     color: #A8C5E2;
 }
 
-/* 대기 결과 */
+/* 대기/불가 결과 */
 .diagnosis-result.result-wait {
     border-color: rgba(255, 255, 255, 0.14);
     background: rgba(255, 255, 255, 0.06);
@@ -2643,6 +2643,16 @@ strong {
 
 .diagnosis-result.result-wait .result-title {
     color: rgba(255, 255, 255, 0.75);
+}
+
+/* 조건부 가능 결과 */
+.diagnosis-result.result-conditional {
+    border-color: rgba(255, 193, 7, 0.4);
+    background: rgba(255, 193, 7, 0.1);
+}
+
+.diagnosis-result.result-conditional .result-title {
+    color: #FFD54F;
 }
 
 /* 결과 보러가기 버튼 */
