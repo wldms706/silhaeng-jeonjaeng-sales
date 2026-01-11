@@ -2296,6 +2296,48 @@ strong {
     color: rgba(255, 255, 255, 0.5);
 }
 
+/* ============================================
+   결정 트리거 섹션
+   ============================================ */
+.decision-trigger {
+    background: linear-gradient(180deg, #0A1929 0%, #0F2747 100%);
+    border-radius: 16px;
+    padding: 48px 32px;
+    margin: 48px 0 40px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.trigger-text {
+    font-size: 18px;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 24px;
+    letter-spacing: -0.01em;
+}
+
+.trigger-text:last-child {
+    margin-bottom: 0;
+}
+
+.trigger-text strong {
+    color: #A8C5E2;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .decision-trigger {
+        padding: 36px 24px;
+        margin: 36px 0 32px;
+    }
+
+    .trigger-text {
+        font-size: 16px;
+        line-height: 1.75;
+        margin-bottom: 20px;
+    }
+}
+
 /* 진단 테스트 모바일 반응형 */
 @media (max-width: 768px) {
     .diagnosis-test {
