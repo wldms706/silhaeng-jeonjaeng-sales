@@ -817,10 +817,41 @@
             const checkedCountEl = document.getElementById('checkedCount');
             const diagnosisMessageEl = document.getElementById('diagnosisMessage');
             const diagnosisResultEl = document.getElementById('diagnosisResult');
-            const scrollToResultBtn = document.getElementById('scrollToResult');
+            const clickCountEl = document.getElementById('clickCount');
 
             // 진단 결과 상태: "disabled" | "conditional" | "enabled"
             window.diagnosisState = 'disabled';
+
+            // 관심등록 중복 방지 플래그 (localStorage로 영구 저장)
+            const INTEREST_KEY = 'silhaeng_interest_registered';
+            let hasRegisteredInterest = localStorage.getItem(INTEREST_KEY) === 'true';
+
+            // 관심등록 기록 함수
+            async function recordInterest() {
+                // 이미 등록했으면 무시
+                if (hasRegisteredInterest) return;
+
+                // 플래그 설정 (즉시 중복 방지)
+                hasRegisteredInterest = true;
+                localStorage.setItem(INTEREST_KEY, 'true');
+
+                // Supabase 또는 로컬스토리지에 카운트 증가
+                if (typeof isSupabaseConfigured !== 'undefined' && isSupabaseConfigured && supabase) {
+                    try {
+                        await supabase.from('clicks').insert({});
+                        loadCounts();
+                    } catch (error) {
+                        console.error('관심등록 기록 실패:', error);
+                    }
+                } else {
+                    // 로컬스토리지 폴백
+                    const current = parseInt(localStorage.getItem('silhaeng_clicks') || '0');
+                    localStorage.setItem('silhaeng_clicks', String(current + 1));
+                    if (clickCountEl) clickCountEl.textContent = current + 1;
+                }
+
+                console.log('관심등록 완료 (5개 이상 체크)');
+            }
 
             function updateDiagnosis() {
                 const n = [...checkboxes].filter(cb => cb.checked).length;
@@ -836,9 +867,9 @@
                     diagnosisResultEl.classList.add('show');
                 }
 
-                // 결과 보러가기 버튼 표시/숨김
-                if (scrollToResultBtn) {
-                    scrollToResultBtn.style.display = n > 0 ? 'block' : 'none';
+                // ★ 5개 이상 최초 도달 시 관심등록 +1
+                if (n >= 5 && !hasRegisteredInterest) {
+                    recordInterest();
                 }
 
                 // 3구간 분기 처리
@@ -895,15 +926,6 @@
             checkboxes.forEach(checkbox => {
                 checkbox.addEventListener('change', updateDiagnosis);
             });
-
-            // 결과 보러가기 버튼 클릭
-            if (scrollToResultBtn) {
-                scrollToResultBtn.addEventListener('click', () => {
-                    if (diagnosisResultEl) {
-                        diagnosisResultEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    }
-                });
-            }
 
             // 초기 상태 설정
             updateDiagnosis();
@@ -999,24 +1021,6 @@
                 }
             }
 
-            // 클릭 기록
-            async function recordClick() {
-                if (!isSupabaseConfigured) {
-                    // 로컬스토리지 폴백
-                    const current = parseInt(localStorage.getItem('silhaeng_clicks') || '0');
-                    localStorage.setItem('silhaeng_clicks', current + 1);
-                    if (clickCountEl) clickCountEl.textContent = current + 1;
-                    return;
-                }
-
-                try {
-                    await supabase.from('clicks').insert({});
-                    loadCounts();
-                } catch (error) {
-                    console.error('클릭 기록 실패:', error);
-                }
-            }
-
             // 버튼 상태 업데이트 (마감 없이 계속 신청 가능)
             function updateButtonState(appCount) {
                 // 남은 자리 표시만 업데이트 (자동 마감 없음)
@@ -1037,7 +1041,7 @@
                 if (window.diagnosisState === 'disabled') {
                     showToast();
                 }
-                recordClick();
+                // 관심등록은 체크박스 5개 이상 시에만 트리거 (recordClick 제거)
             }
 
             if (applyBtn) {
@@ -1045,14 +1049,6 @@
             }
             if (applyBtnFinal) {
                 applyBtnFinal.addEventListener('click', handleApplyClick);
-            }
-
-            // 히어로 CTA 버튼도 추적 (진단 체크 없이)
-            const heroCta = document.querySelector('.hero .cta-button');
-            if (heroCta) {
-                heroCta.addEventListener('click', () => {
-                    recordClick();
-                });
             }
 
             // 초기 로드
