@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
     <!-- Hero Section -->
@@ -621,13 +623,30 @@
                     <div class="diagnosis-count">체크한 항목: <span id="checkedCount">0</span>개</div>
                     <div class="diagnosis-message" id="diagnosisMessage"></div>
                 </div>
+
+                <button type="button" class="diagnosis-scroll-btn" id="scrollToResult" style="display: none;">
+                    결과 보러 가기
+                </button>
+            </div>
+
+            <!-- 신청 현황 카운터 -->
+            <div class="application-status">
+                <div class="status-item">
+                    <span class="status-label">관심 등록</span>
+                    <span class="status-value"><span id="clickCount">0</span>회</span>
+                </div>
+                <div class="status-divider"></div>
+                <div class="status-item">
+                    <span class="status-label">현재 신청중</span>
+                    <span class="status-value"><span id="applicationCount">0</span> / 4명</span>
+                </div>
             </div>
 
             <div class="pricing-cta">
-                <a href="https://forms.gle/your-form-link" class="cta-button cta-pricing" target="_blank">
+                <a href="https://forms.gle/your-form-link" class="cta-button cta-pricing" id="applyBtn" target="_blank">
                     1기 참여 신청하기
                 </a>
-                <p class="pricing-urgency">선착순 4명</p>
+                <p class="pricing-urgency" id="urgencyText">선착순 4명</p>
             </div>
         </div>
     </section>
@@ -650,11 +669,11 @@
                     <span>✓ 1:1 밀착 피드백</span>
                     <span>✓ 즉시 적용 가능</span>
                 </div>
-                <a href="https://forms.gle/your-form-link" class="cta-button cta-final" target="_blank">
+                <a href="https://forms.gle/your-form-link" class="cta-button cta-final apply-btn-track" id="applyBtnFinal" target="_blank">
                     지금 바로 신청하기
                 </a>
                 <p class="final-note">
-                    <span class="urgency">선착순 마감</span> · 추가 모집 일정 미정
+                    <span class="urgency" id="urgencyTextFinal">선착순 마감</span> · 추가 모집 일정 미정
                 </p>
             </div>
         </div>
@@ -773,10 +792,18 @@
         const checkedCountEl = document.getElementById('checkedCount');
         const diagnosisMessageEl = document.getElementById('diagnosisMessage');
         const diagnosisResultEl = document.getElementById('diagnosisResult');
+        const scrollToResultBtn = document.getElementById('scrollToResult');
 
         function updateDiagnosis() {
             const checkedCount = document.querySelectorAll('.diagnosis-checkbox:checked').length;
             checkedCountEl.textContent = checkedCount;
+
+            // Show/hide scroll button based on check count
+            if (checkedCount > 0) {
+                scrollToResultBtn.style.display = 'block';
+            } else {
+                scrollToResultBtn.style.display = 'none';
+            }
 
             if (checkedCount === 0) {
                 diagnosisMessageEl.innerHTML = '';
@@ -801,6 +828,149 @@
         checkboxes.forEach(checkbox => {
             checkbox.addEventListener('change', updateDiagnosis);
         });
+
+        // Scroll to result button
+        scrollToResultBtn.addEventListener('click', () => {
+            diagnosisResultEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+
+        // ============================================
+        // Supabase 신청 카운트 시스템
+        // ============================================
+
+        // Supabase 설정 (실제 값으로 교체 필요)
+        const SUPABASE_URL = 'YOUR_SUPABASE_URL';
+        const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+        const MAX_APPLICATIONS = 4;
+
+        // Supabase 클라이언트 초기화
+        let supabase = null;
+        let isSupabaseConfigured = false;
+
+        if (SUPABASE_URL !== 'YOUR_SUPABASE_URL' && SUPABASE_ANON_KEY !== 'YOUR_SUPABASE_ANON_KEY') {
+            supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            isSupabaseConfigured = true;
+        }
+
+        // DOM Elements
+        const clickCountEl = document.getElementById('clickCount');
+        const applicationCountEl = document.getElementById('applicationCount');
+        const applyBtn = document.getElementById('applyBtn');
+        const applyBtnFinal = document.getElementById('applyBtnFinal');
+        const urgencyText = document.getElementById('urgencyText');
+        const urgencyTextFinal = document.getElementById('urgencyTextFinal');
+
+        // 카운트 데이터 로드
+        async function loadCounts() {
+            if (!isSupabaseConfigured) {
+                // Supabase 미설정 시 로컬스토리지 폴백
+                const localClicks = localStorage.getItem('silhaeng_clicks') || '0';
+                const localApps = localStorage.getItem('silhaeng_applications') || '0';
+                clickCountEl.textContent = localClicks;
+                applicationCountEl.textContent = localApps;
+                updateButtonState(parseInt(localApps));
+                return;
+            }
+
+            try {
+                // 클릭 수 조회
+                const { count: clickCount } = await supabase
+                    .from('clicks')
+                    .select('*', { count: 'exact', head: true });
+
+                // 신청 수 조회 (submitted 또는 paid 상태)
+                const { count: appCount } = await supabase
+                    .from('applications')
+                    .select('*', { count: 'exact', head: true })
+                    .in('status', ['submitted', 'paid']);
+
+                clickCountEl.textContent = clickCount || 0;
+                applicationCountEl.textContent = appCount || 0;
+                updateButtonState(appCount || 0);
+            } catch (error) {
+                console.error('카운트 로드 실패:', error);
+            }
+        }
+
+        // 클릭 기록
+        async function recordClick() {
+            if (!isSupabaseConfigured) {
+                // 로컬스토리지 폴백
+                const current = parseInt(localStorage.getItem('silhaeng_clicks') || '0');
+                localStorage.setItem('silhaeng_clicks', current + 1);
+                clickCountEl.textContent = current + 1;
+                return;
+            }
+
+            try {
+                await supabase.from('clicks').insert({});
+                loadCounts();
+            } catch (error) {
+                console.error('클릭 기록 실패:', error);
+            }
+        }
+
+        // 버튼 상태 업데이트
+        function updateButtonState(appCount) {
+            if (appCount >= MAX_APPLICATIONS) {
+                // 마감 처리
+                if (applyBtn) {
+                    applyBtn.classList.add('btn-disabled');
+                    applyBtn.textContent = '1기 모집 마감';
+                    applyBtn.removeAttribute('href');
+                    applyBtn.style.pointerEvents = 'none';
+                }
+                if (applyBtnFinal) {
+                    applyBtnFinal.classList.add('btn-disabled');
+                    applyBtnFinal.textContent = '1기 모집 마감';
+                    applyBtnFinal.removeAttribute('href');
+                    applyBtnFinal.style.pointerEvents = 'none';
+                }
+                if (urgencyText) {
+                    urgencyText.textContent = '모집 마감';
+                    urgencyText.classList.add('closed');
+                }
+                if (urgencyTextFinal) {
+                    urgencyTextFinal.textContent = '모집 마감';
+                }
+            } else {
+                // 남은 자리 표시
+                const remaining = MAX_APPLICATIONS - appCount;
+                if (urgencyText) {
+                    urgencyText.textContent = `선착순 ${remaining}자리 남음`;
+                }
+            }
+        }
+
+        // 신청 버튼 클릭 이벤트
+        function handleApplyClick(e) {
+            recordClick();
+        }
+
+        if (applyBtn) {
+            applyBtn.addEventListener('click', handleApplyClick);
+        }
+        if (applyBtnFinal) {
+            applyBtnFinal.addEventListener('click', handleApplyClick);
+        }
+
+        // 히어로 CTA 버튼도 추적
+        const heroCta = document.querySelector('.hero .cta-button');
+        if (heroCta) {
+            heroCta.addEventListener('click', handleApplyClick);
+        }
+
+        // 초기 로드
+        loadCounts();
+
+        // 실시간 업데이트 (Supabase Realtime - 옵션)
+        if (isSupabaseConfigured && supabase) {
+            supabase
+                .channel('counts')
+                .on('postgres_changes', { event: '*', schema: 'public', table: 'clicks' }, loadCounts)
+                .on('postgres_changes', { event: '*', schema: 'public', table: 'applications' }, loadCounts)
+                .subscribe();
+        }
     </script>
 </body>
 </html>

@@ -2268,3 +2268,113 @@ strong {
         font-size: 13px;
     }
 }
+
+/* ============================================
+   신청 현황 카운터 스타일
+   ============================================ */
+
+.application-status {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    padding: 24px 40px;
+    margin: 32px auto;
+    max-width: 400px;
+}
+
+.status-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.status-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.5px;
+}
+
+.status-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--white);
+}
+
+.status-value span {
+    font-size: 24px;
+    color: #A8C5E2;
+}
+
+.status-divider {
+    width: 1px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* 버튼 비활성화 상태 */
+.btn-disabled {
+    background: rgba(255, 255, 255, 0.3) !important;
+    color: rgba(255, 255, 255, 0.6) !important;
+    cursor: not-allowed !important;
+}
+
+.btn-disabled:hover {
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.pricing-urgency.closed {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* 결과 보러가기 버튼 */
+.diagnosis-scroll-btn {
+    display: block;
+    margin: 24px auto 0;
+    padding: 14px 32px;
+    background: var(--primary);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.diagnosis-scroll-btn:hover {
+    background: var(--primary-light);
+    transform: translateY(-1px);
+}
+
+/* 신청 현황 모바일 반응형 */
+@media (max-width: 768px) {
+    .application-status {
+        gap: 24px;
+        padding: 20px 24px;
+        max-width: 320px;
+    }
+
+    .status-value {
+        font-size: 16px;
+    }
+
+    .status-value span {
+        font-size: 20px;
+    }
+
+    .status-divider {
+        height: 32px;
+    }
+
+    .diagnosis-scroll-btn {
+        padding: 12px 28px;
+        font-size: 14px;
+    }
+}
