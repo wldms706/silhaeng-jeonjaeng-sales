@@ -691,6 +691,9 @@
     </footer>
 
     <script>
+        // JS 로드 완료 표시 (애니메이션 활성화)
+        document.body.classList.add('js-loaded');
+
         // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
