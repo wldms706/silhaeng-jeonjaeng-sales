@@ -2536,9 +2536,13 @@ strong {
     border-color: rgba(255, 255, 255, 0.24);
 }
 
-/* 체크박스 숨김 */
+/* 체크박스 시각적 숨김 (기능 유지) */
 .diagnosis-checkbox {
-    display: none;
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
 }
 
 /* 커스텀 체크마크 */

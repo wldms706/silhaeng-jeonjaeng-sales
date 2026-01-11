@@ -705,344 +705,351 @@
         // JS 로드 완료 표시 (애니메이션 활성화)
         document.body.classList.add('js-loaded');
 
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Scroll indicator fade on scroll
-        window.addEventListener('scroll', () => {
-            const scrollIndicator = document.querySelector('.scroll-indicator');
-            if (scrollIndicator) {
-                scrollIndicator.style.opacity = 1 - (window.scrollY / 300);
-            }
-        });
-
-        // Intersection Observer for fade-in animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.section').forEach(section => {
-            observer.observe(section);
-        });
-
-        // Video Carousel (Mobile)
-        const carousel = document.querySelector('.video-carousel');
-        if (carousel) {
-            const track = carousel.querySelector('.video-track');
-            const dots = carousel.querySelectorAll('.dot');
-            let currentIndex = 0;
-
-            function updateCarousel() {
-                if (window.innerWidth <= 768) {
-                    track.style.transform = `translateX(-${currentIndex * 100}%)`;
-                    dots.forEach((dot, index) => {
-                        dot.classList.toggle('active', index === currentIndex);
-                    });
-                } else {
-                    track.style.transform = 'translateX(0)';
-                }
-            }
-
-            dots.forEach(dot => {
-                dot.addEventListener('click', () => {
-                    currentIndex = parseInt(dot.dataset.index);
-                    updateCarousel();
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
                 });
             });
 
-            // Swipe support
-            let touchStartX = 0;
-            let touchEndX = 0;
-
-            track.addEventListener('touchstart', e => {
-                touchStartX = e.changedTouches[0].screenX;
+            // Scroll indicator fade on scroll
+            window.addEventListener('scroll', () => {
+                const scrollIndicator = document.querySelector('.scroll-indicator');
+                if (scrollIndicator) {
+                    scrollIndicator.style.opacity = 1 - (window.scrollY / 300);
+                }
             });
 
-            track.addEventListener('touchend', e => {
-                touchEndX = e.changedTouches[0].screenX;
-                handleSwipe();
-            });
+            // Intersection Observer for fade-in animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
 
-            function handleSwipe() {
-                const swipeThreshold = 50;
-                const diff = touchStartX - touchEndX;
-
-                if (Math.abs(diff) > swipeThreshold) {
-                    if (diff > 0 && currentIndex < 2) {
-                        currentIndex++;
-                    } else if (diff < 0 && currentIndex > 0) {
-                        currentIndex--;
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
                     }
-                    updateCarousel();
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.section').forEach(section => {
+                observer.observe(section);
+            });
+
+            // Video Carousel (Mobile)
+            const carousel = document.querySelector('.video-carousel');
+            if (carousel) {
+                const track = carousel.querySelector('.video-track');
+                const dots = carousel.querySelectorAll('.dot');
+                let currentIndex = 0;
+
+                function updateCarousel() {
+                    if (window.innerWidth <= 768) {
+                        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+                        dots.forEach((dot, index) => {
+                            dot.classList.toggle('active', index === currentIndex);
+                        });
+                    } else {
+                        track.style.transform = 'translateX(0)';
+                    }
                 }
-            }
 
-            window.addEventListener('resize', updateCarousel);
-            updateCarousel();
-        }
+                dots.forEach(dot => {
+                    dot.addEventListener('click', () => {
+                        currentIndex = parseInt(dot.dataset.index);
+                        updateCarousel();
+                    });
+                });
 
-        // ============================================
-        // 참여 가능성 진단 테스트
-        // ============================================
-        const checkboxes = document.querySelectorAll('.diagnosis-checkbox');
-        const checkedCountEl = document.getElementById('checkedCount');
-        const diagnosisMessageEl = document.getElementById('diagnosisMessage');
-        const diagnosisResultEl = document.getElementById('diagnosisResult');
-        const scrollToResultBtn = document.getElementById('scrollToResult');
+                // Swipe support
+                let touchStartX = 0;
+                let touchEndX = 0;
 
-        // 진단 결과에 따른 CTA 버튼 상태 관리
-        let isDiagnosisPassed = false;
+                track.addEventListener('touchstart', e => {
+                    touchStartX = e.changedTouches[0].screenX;
+                });
 
-        function updateDiagnosis() {
-            const checkedCount = document.querySelectorAll('.diagnosis-checkbox:checked').length;
+                track.addEventListener('touchend', e => {
+                    touchEndX = e.changedTouches[0].screenX;
+                    handleSwipe();
+                });
 
-            // 체크 개수 표시
-            if (checkedCountEl) {
-                checkedCountEl.textContent = checkedCount;
-            }
+                function handleSwipe() {
+                    const swipeThreshold = 50;
+                    const diff = touchStartX - touchEndX;
 
-            // 결과 보러가기 버튼 표시/숨김
-            if (scrollToResultBtn) {
-                scrollToResultBtn.style.display = checkedCount > 0 ? 'block' : 'none';
-            }
-
-            // 결과 분기 처리
-            if (checkedCount === 0) {
-                // 초기 상태
-                if (diagnosisMessageEl) {
-                    diagnosisMessageEl.innerHTML = `
-                        <p class="result-title">체크박스를 선택해주세요</p>
-                        <p class="result-subtitle">위 항목 중 해당되는 것을 체크하면 결과가 표시됩니다.</p>
-                    `;
+                    if (Math.abs(diff) > swipeThreshold) {
+                        if (diff > 0 && currentIndex < 2) {
+                            currentIndex++;
+                        } else if (diff < 0 && currentIndex > 0) {
+                            currentIndex--;
+                        }
+                        updateCarousel();
+                    }
                 }
+
+                window.addEventListener('resize', updateCarousel);
+                updateCarousel();
+            }
+
+            // ============================================
+            // 참여 가능성 진단 테스트
+            // ============================================
+            const checkboxes = document.querySelectorAll('.diagnosis-checkbox');
+            const checkedCountEl = document.getElementById('checkedCount');
+            const diagnosisMessageEl = document.getElementById('diagnosisMessage');
+            const diagnosisResultEl = document.getElementById('diagnosisResult');
+            const scrollToResultBtn = document.getElementById('scrollToResult');
+
+            // 진단 결과에 따른 CTA 버튼 상태 관리
+            window.isDiagnosisPassed = false;
+
+            function updateDiagnosis() {
+                const checkedCount = document.querySelectorAll('.diagnosis-checkbox:checked').length;
+                console.log('체크된 항목 수:', checkedCount); // 디버깅용
+
+                // 체크 개수 표시
+                if (checkedCountEl) {
+                    checkedCountEl.textContent = checkedCount;
+                }
+
+                // 결과 박스 항상 표시
                 if (diagnosisResultEl) {
                     diagnosisResultEl.classList.add('show');
-                    diagnosisResultEl.classList.remove('result-good', 'result-wait');
                 }
-                isDiagnosisPassed = false;
-            } else if (checkedCount >= 5) {
-                // 합격/권장 상태
-                if (diagnosisMessageEl) {
-                    diagnosisMessageEl.innerHTML = `
-                        <p class="result-title">지금 이 프로그램과 잘 맞습니다.</p>
-                        <p class="result-subtitle">즉각적인 성과보다 실행 습관과 구조를 먼저 만들 준비가 되어 있습니다.<br>네, 저와 함께 가시죠.</p>
-                    `;
+
+                // 결과 보러가기 버튼 표시/숨김
+                if (scrollToResultBtn) {
+                    scrollToResultBtn.style.display = checkedCount > 0 ? 'block' : 'none';
                 }
-                if (diagnosisResultEl) {
-                    diagnosisResultEl.classList.add('show', 'result-good');
-                    diagnosisResultEl.classList.remove('result-wait');
-                }
-                isDiagnosisPassed = true;
-            } else {
-                // 보류/준비 단계
-                if (diagnosisMessageEl) {
-                    diagnosisMessageEl.innerHTML = `
-                        <p class="result-title">아직은 준비 단계일 수 있습니다.</p>
-                        <p class="result-subtitle">기초를 다진 후 다시 신청해 주세요.<br>(${5 - checkedCount}개 더 체크하면 참여 가능)</p>
-                    `;
-                }
-                if (diagnosisResultEl) {
-                    diagnosisResultEl.classList.add('show', 'result-wait');
-                    diagnosisResultEl.classList.remove('result-good');
-                }
-                isDiagnosisPassed = false;
-            }
-        }
 
-        // 체크박스 이벤트 등록
-        checkboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', updateDiagnosis);
-        });
-
-        // 결과 보러가기 버튼 클릭
-        if (scrollToResultBtn) {
-            scrollToResultBtn.addEventListener('click', () => {
-                if (diagnosisResultEl) {
-                    diagnosisResultEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-            });
-        }
-
-        // 초기 상태 설정
-        updateDiagnosis();
-
-        // ============================================
-        // 토스트 알림 시스템
-        // ============================================
-        const toastContainer = document.getElementById('toastContainer');
-        const diagnosisToast = document.getElementById('diagnosisToast');
-        const toastCloseBtn = document.getElementById('toastClose');
-
-        function showToast() {
-            if (toastContainer) {
-                toastContainer.classList.add('show');
-            }
-        }
-
-        function hideToast() {
-            if (toastContainer) {
-                toastContainer.classList.remove('show');
-            }
-        }
-
-        // 토스트 닫기 버튼
-        if (toastCloseBtn) {
-            toastCloseBtn.addEventListener('click', hideToast);
-        }
-
-        // 토스트 배경 클릭 시 닫기
-        if (toastContainer) {
-            toastContainer.addEventListener('click', (e) => {
-                if (e.target === toastContainer) {
-                    hideToast();
-                }
-            });
-        }
-
-        // ============================================
-        // Supabase 신청 카운트 시스템
-        // ============================================
-
-        // Supabase 설정 (실제 값으로 교체 필요)
-        const SUPABASE_URL = 'YOUR_SUPABASE_URL';
-        const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
-        const MAX_APPLICATIONS = 4;
-
-        // Supabase 클라이언트 초기화
-        let supabase = null;
-        let isSupabaseConfigured = false;
-
-        if (SUPABASE_URL !== 'YOUR_SUPABASE_URL' && SUPABASE_ANON_KEY !== 'YOUR_SUPABASE_ANON_KEY') {
-            supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-            isSupabaseConfigured = true;
-        }
-
-        // DOM Elements
-        const clickCountEl = document.getElementById('clickCount');
-        const applicationCountEl = document.getElementById('applicationCount');
-        const applyBtn = document.getElementById('applyBtn');
-        const applyBtnFinal = document.getElementById('applyBtnFinal');
-        const urgencyText = document.getElementById('urgencyText');
-        const urgencyTextFinal = document.getElementById('urgencyTextFinal');
-
-        // 카운트 데이터 로드
-        async function loadCounts() {
-            if (!isSupabaseConfigured) {
-                // Supabase 미설정 시 로컬스토리지 폴백
-                const localClicks = localStorage.getItem('silhaeng_clicks') || '0';
-                const localApps = localStorage.getItem('silhaeng_applications') || '0';
-                clickCountEl.textContent = localClicks;
-                applicationCountEl.textContent = localApps;
-                updateButtonState(parseInt(localApps));
-                return;
-            }
-
-            try {
-                // 클릭 수 조회
-                const { count: clickCount } = await supabase
-                    .from('clicks')
-                    .select('*', { count: 'exact', head: true });
-
-                // 신청 수 조회 (submitted 또는 paid 상태)
-                const { count: appCount } = await supabase
-                    .from('applications')
-                    .select('*', { count: 'exact', head: true })
-                    .in('status', ['submitted', 'paid']);
-
-                clickCountEl.textContent = clickCount || 0;
-                applicationCountEl.textContent = appCount || 0;
-                updateButtonState(appCount || 0);
-            } catch (error) {
-                console.error('카운트 로드 실패:', error);
-            }
-        }
-
-        // 클릭 기록
-        async function recordClick() {
-            if (!isSupabaseConfigured) {
-                // 로컬스토리지 폴백
-                const current = parseInt(localStorage.getItem('silhaeng_clicks') || '0');
-                localStorage.setItem('silhaeng_clicks', current + 1);
-                clickCountEl.textContent = current + 1;
-                return;
-            }
-
-            try {
-                await supabase.from('clicks').insert({});
-                loadCounts();
-            } catch (error) {
-                console.error('클릭 기록 실패:', error);
-            }
-        }
-
-        // 버튼 상태 업데이트 (마감 없이 계속 신청 가능)
-        function updateButtonState(appCount) {
-            // 남은 자리 표시만 업데이트 (자동 마감 없음)
-            const remaining = MAX_APPLICATIONS - appCount;
-            if (urgencyText) {
-                if (remaining > 0) {
-                    urgencyText.textContent = `선착순 ${remaining}자리 남음`;
+                // 결과 분기 처리
+                if (checkedCount === 0) {
+                    // 초기 상태
+                    if (diagnosisMessageEl) {
+                        diagnosisMessageEl.innerHTML = `
+                            <p class="result-title">체크박스를 선택해주세요</p>
+                            <p class="result-subtitle">위 항목 중 해당되는 것을 체크하면 결과가 표시됩니다.</p>
+                        `;
+                    }
+                    if (diagnosisResultEl) {
+                        diagnosisResultEl.classList.remove('result-good', 'result-wait');
+                    }
+                    window.isDiagnosisPassed = false;
+                } else if (checkedCount >= 5) {
+                    // 합격/권장 상태
+                    if (diagnosisMessageEl) {
+                        diagnosisMessageEl.innerHTML = `
+                            <p class="result-title">지금 이 프로그램과 잘 맞습니다.</p>
+                            <p class="result-subtitle">즉각적인 성과보다 실행 습관과 구조를 먼저 만들 준비가 되어 있습니다.<br>네, 저와 함께 가시죠.</p>
+                        `;
+                    }
+                    if (diagnosisResultEl) {
+                        diagnosisResultEl.classList.add('result-good');
+                        diagnosisResultEl.classList.remove('result-wait');
+                    }
+                    window.isDiagnosisPassed = true;
                 } else {
-                    urgencyText.textContent = `마감 임박`;
+                    // 보류/준비 단계 (1~4개)
+                    if (diagnosisMessageEl) {
+                        diagnosisMessageEl.innerHTML = `
+                            <p class="result-title">아직은 준비 단계일 수 있습니다.</p>
+                            <p class="result-subtitle">기초를 다진 후 다시 신청해 주세요.<br>(${5 - checkedCount}개 더 체크하면 참여 가능)</p>
+                        `;
+                    }
+                    if (diagnosisResultEl) {
+                        diagnosisResultEl.classList.add('result-wait');
+                        diagnosisResultEl.classList.remove('result-good');
+                    }
+                    window.isDiagnosisPassed = false;
                 }
             }
-        }
 
-        // 신청 버튼 클릭 이벤트 (진단 결과 체크)
-        function handleApplyClick(e) {
-            // 진단 테스트 미통과 시 토스트 표시 (신청은 허용)
-            if (!isDiagnosisPassed) {
-                showToast();
-            }
-            recordClick();
-        }
-
-        if (applyBtn) {
-            applyBtn.addEventListener('click', handleApplyClick);
-        }
-        if (applyBtnFinal) {
-            applyBtnFinal.addEventListener('click', handleApplyClick);
-        }
-
-        // 히어로 CTA 버튼도 추적 (진단 체크 없이)
-        const heroCta = document.querySelector('.hero .cta-button');
-        if (heroCta) {
-            heroCta.addEventListener('click', () => {
-                recordClick();
+            // 체크박스 change 이벤트 등록
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', updateDiagnosis);
             });
-        }
 
-        // 초기 로드
-        loadCounts();
+            // 결과 보러가기 버튼 클릭
+            if (scrollToResultBtn) {
+                scrollToResultBtn.addEventListener('click', () => {
+                    if (diagnosisResultEl) {
+                        diagnosisResultEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                });
+            }
 
-        // 실시간 업데이트 (Supabase Realtime - 옵션)
-        if (isSupabaseConfigured && supabase) {
-            supabase
-                .channel('counts')
-                .on('postgres_changes', { event: '*', schema: 'public', table: 'clicks' }, loadCounts)
-                .on('postgres_changes', { event: '*', schema: 'public', table: 'applications' }, loadCounts)
-                .subscribe();
-        }
+            // 초기 상태 설정
+            updateDiagnosis();
+
+            // ============================================
+            // 토스트 알림 시스템
+            // ============================================
+            const toastContainer = document.getElementById('toastContainer');
+            const diagnosisToast = document.getElementById('diagnosisToast');
+            const toastCloseBtn = document.getElementById('toastClose');
+
+            function showToast() {
+                if (toastContainer) {
+                    toastContainer.classList.add('show');
+                }
+            }
+
+            function hideToast() {
+                if (toastContainer) {
+                    toastContainer.classList.remove('show');
+                }
+            }
+
+            // 토스트 닫기 버튼
+            if (toastCloseBtn) {
+                toastCloseBtn.addEventListener('click', hideToast);
+            }
+
+            // 토스트 배경 클릭 시 닫기
+            if (toastContainer) {
+                toastContainer.addEventListener('click', (e) => {
+                    if (e.target === toastContainer) {
+                        hideToast();
+                    }
+                });
+            }
+
+            // ============================================
+            // Supabase 신청 카운트 시스템
+            // ============================================
+
+            // Supabase 설정 (실제 값으로 교체 필요)
+            const SUPABASE_URL = 'YOUR_SUPABASE_URL';
+            const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+            const MAX_APPLICATIONS = 4;
+
+            // Supabase 클라이언트 초기화
+            let supabase = null;
+            let isSupabaseConfigured = false;
+
+            if (SUPABASE_URL !== 'YOUR_SUPABASE_URL' && SUPABASE_ANON_KEY !== 'YOUR_SUPABASE_ANON_KEY') {
+                supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+                isSupabaseConfigured = true;
+            }
+
+            // DOM Elements
+            const clickCountEl = document.getElementById('clickCount');
+            const applicationCountEl = document.getElementById('applicationCount');
+            const applyBtn = document.getElementById('applyBtn');
+            const applyBtnFinal = document.getElementById('applyBtnFinal');
+            const urgencyText = document.getElementById('urgencyText');
+            const urgencyTextFinal = document.getElementById('urgencyTextFinal');
+
+            // 카운트 데이터 로드
+            async function loadCounts() {
+                if (!isSupabaseConfigured) {
+                    // Supabase 미설정 시 로컬스토리지 폴백
+                    const localClicks = localStorage.getItem('silhaeng_clicks') || '0';
+                    const localApps = localStorage.getItem('silhaeng_applications') || '0';
+                    if (clickCountEl) clickCountEl.textContent = localClicks;
+                    if (applicationCountEl) applicationCountEl.textContent = localApps;
+                    updateButtonState(parseInt(localApps));
+                    return;
+                }
+
+                try {
+                    // 클릭 수 조회
+                    const { count: clickCount } = await supabase
+                        .from('clicks')
+                        .select('*', { count: 'exact', head: true });
+
+                    // 신청 수 조회 (submitted 또는 paid 상태)
+                    const { count: appCount } = await supabase
+                        .from('applications')
+                        .select('*', { count: 'exact', head: true })
+                        .in('status', ['submitted', 'paid']);
+
+                    if (clickCountEl) clickCountEl.textContent = clickCount || 0;
+                    if (applicationCountEl) applicationCountEl.textContent = appCount || 0;
+                    updateButtonState(appCount || 0);
+                } catch (error) {
+                    console.error('카운트 로드 실패:', error);
+                }
+            }
+
+            // 클릭 기록
+            async function recordClick() {
+                if (!isSupabaseConfigured) {
+                    // 로컬스토리지 폴백
+                    const current = parseInt(localStorage.getItem('silhaeng_clicks') || '0');
+                    localStorage.setItem('silhaeng_clicks', current + 1);
+                    if (clickCountEl) clickCountEl.textContent = current + 1;
+                    return;
+                }
+
+                try {
+                    await supabase.from('clicks').insert({});
+                    loadCounts();
+                } catch (error) {
+                    console.error('클릭 기록 실패:', error);
+                }
+            }
+
+            // 버튼 상태 업데이트 (마감 없이 계속 신청 가능)
+            function updateButtonState(appCount) {
+                // 남은 자리 표시만 업데이트 (자동 마감 없음)
+                const remaining = MAX_APPLICATIONS - appCount;
+                if (urgencyText) {
+                    if (remaining > 0) {
+                        urgencyText.textContent = `선착순 ${remaining}자리 남음`;
+                    } else {
+                        urgencyText.textContent = `마감 임박`;
+                    }
+                }
+            }
+
+            // 신청 버튼 클릭 이벤트 (진단 결과 체크)
+            function handleApplyClick(e) {
+                // 진단 테스트 미통과 시 토스트 표시 (신청은 허용)
+                if (!window.isDiagnosisPassed) {
+                    showToast();
+                }
+                recordClick();
+            }
+
+            if (applyBtn) {
+                applyBtn.addEventListener('click', handleApplyClick);
+            }
+            if (applyBtnFinal) {
+                applyBtnFinal.addEventListener('click', handleApplyClick);
+            }
+
+            // 히어로 CTA 버튼도 추적 (진단 체크 없이)
+            const heroCta = document.querySelector('.hero .cta-button');
+            if (heroCta) {
+                heroCta.addEventListener('click', () => {
+                    recordClick();
+                });
+            }
+
+            // 초기 로드
+            loadCounts();
+
+            // 실시간 업데이트 (Supabase Realtime - 옵션)
+            if (isSupabaseConfigured && supabase) {
+                supabase
+                    .channel('counts')
+                    .on('postgres_changes', { event: '*', schema: 'public', table: 'clicks' }, loadCounts)
+                    .on('postgres_changes', { event: '*', schema: 'public', table: 'applications' }, loadCounts)
+                    .subscribe();
+            }
+        }); // DOMContentLoaded 끝
     </script>
 </body>
 </html>
