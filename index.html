@@ -679,6 +679,17 @@
         </div>
     </section>
 
+    <!-- Toast 알림 -->
+    <div class="toast-container" id="toastContainer">
+        <div class="toast" id="diagnosisToast">
+            <div class="toast-content">
+                <p class="toast-title">참여 조건 안내</p>
+                <p class="toast-message">현재 체크 항목이 5개 미만이라<br>프로그램 효과가 미미할 수 있습니다.<br><br>그래도 상담을 원하시면 신청서에<br>'현재 상황'을 자세히 적어주세요.</p>
+                <button class="toast-close" id="toastClose">확인</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -790,52 +801,123 @@
             updateCarousel();
         }
 
-        // Diagnosis Test
+        // ============================================
+        // 참여 가능성 진단 테스트
+        // ============================================
         const checkboxes = document.querySelectorAll('.diagnosis-checkbox');
         const checkedCountEl = document.getElementById('checkedCount');
         const diagnosisMessageEl = document.getElementById('diagnosisMessage');
         const diagnosisResultEl = document.getElementById('diagnosisResult');
         const scrollToResultBtn = document.getElementById('scrollToResult');
 
+        // 진단 결과에 따른 CTA 버튼 상태 관리
+        let isDiagnosisPassed = false;
+
         function updateDiagnosis() {
             const checkedCount = document.querySelectorAll('.diagnosis-checkbox:checked').length;
-            checkedCountEl.textContent = checkedCount;
 
-            // Show/hide scroll button based on check count
-            if (checkedCount > 0) {
-                scrollToResultBtn.style.display = 'block';
-            } else {
-                scrollToResultBtn.style.display = 'none';
+            // 체크 개수 표시
+            if (checkedCountEl) {
+                checkedCountEl.textContent = checkedCount;
             }
 
+            // 결과 보러가기 버튼 표시/숨김
+            if (scrollToResultBtn) {
+                scrollToResultBtn.style.display = checkedCount > 0 ? 'block' : 'none';
+            }
+
+            // 결과 분기 처리
             if (checkedCount === 0) {
-                diagnosisMessageEl.innerHTML = '';
-                diagnosisResultEl.classList.remove('show', 'result-good', 'result-wait');
+                // 초기 상태
+                if (diagnosisMessageEl) {
+                    diagnosisMessageEl.innerHTML = `
+                        <p class="result-title">체크박스를 선택해주세요</p>
+                        <p class="result-subtitle">위 항목 중 해당되는 것을 체크하면 결과가 표시됩니다.</p>
+                    `;
+                }
+                if (diagnosisResultEl) {
+                    diagnosisResultEl.classList.add('show');
+                    diagnosisResultEl.classList.remove('result-good', 'result-wait');
+                }
+                isDiagnosisPassed = false;
             } else if (checkedCount >= 5) {
-                diagnosisMessageEl.innerHTML = `
-                    <p class="result-title">지금 이 프로그램과 잘 맞습니다.</p>
-                    <p class="result-subtitle">네, 저와 함께 가시죠.</p>
-                `;
-                diagnosisResultEl.classList.add('show', 'result-good');
-                diagnosisResultEl.classList.remove('result-wait');
+                // 합격/권장 상태
+                if (diagnosisMessageEl) {
+                    diagnosisMessageEl.innerHTML = `
+                        <p class="result-title">지금 이 프로그램과 잘 맞습니다.</p>
+                        <p class="result-subtitle">즉각적인 성과보다 실행 습관과 구조를 먼저 만들 준비가 되어 있습니다.<br>네, 저와 함께 가시죠.</p>
+                    `;
+                }
+                if (diagnosisResultEl) {
+                    diagnosisResultEl.classList.add('show', 'result-good');
+                    diagnosisResultEl.classList.remove('result-wait');
+                }
+                isDiagnosisPassed = true;
             } else {
-                diagnosisMessageEl.innerHTML = `
-                    <p class="result-title">아직은 준비 단계일 수 있습니다.</p>
-                    <p class="result-subtitle">기초를 다진 후 다시 신청해 주세요.</p>
-                `;
-                diagnosisResultEl.classList.add('show', 'result-wait');
-                diagnosisResultEl.classList.remove('result-good');
+                // 보류/준비 단계
+                if (diagnosisMessageEl) {
+                    diagnosisMessageEl.innerHTML = `
+                        <p class="result-title">아직은 준비 단계일 수 있습니다.</p>
+                        <p class="result-subtitle">기초를 다진 후 다시 신청해 주세요.<br>(${5 - checkedCount}개 더 체크하면 참여 가능)</p>
+                    `;
+                }
+                if (diagnosisResultEl) {
+                    diagnosisResultEl.classList.add('show', 'result-wait');
+                    diagnosisResultEl.classList.remove('result-good');
+                }
+                isDiagnosisPassed = false;
             }
         }
 
+        // 체크박스 이벤트 등록
         checkboxes.forEach(checkbox => {
             checkbox.addEventListener('change', updateDiagnosis);
         });
 
-        // Scroll to result button
-        scrollToResultBtn.addEventListener('click', () => {
-            diagnosisResultEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        });
+        // 결과 보러가기 버튼 클릭
+        if (scrollToResultBtn) {
+            scrollToResultBtn.addEventListener('click', () => {
+                if (diagnosisResultEl) {
+                    diagnosisResultEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+        }
+
+        // 초기 상태 설정
+        updateDiagnosis();
+
+        // ============================================
+        // 토스트 알림 시스템
+        // ============================================
+        const toastContainer = document.getElementById('toastContainer');
+        const diagnosisToast = document.getElementById('diagnosisToast');
+        const toastCloseBtn = document.getElementById('toastClose');
+
+        function showToast() {
+            if (toastContainer) {
+                toastContainer.classList.add('show');
+            }
+        }
+
+        function hideToast() {
+            if (toastContainer) {
+                toastContainer.classList.remove('show');
+            }
+        }
+
+        // 토스트 닫기 버튼
+        if (toastCloseBtn) {
+            toastCloseBtn.addEventListener('click', hideToast);
+        }
+
+        // 토스트 배경 클릭 시 닫기
+        if (toastContainer) {
+            toastContainer.addEventListener('click', (e) => {
+                if (e.target === toastContainer) {
+                    hideToast();
+                }
+            });
+        }
 
         // ============================================
         // Supabase 신청 카운트 시스템
@@ -926,8 +1008,12 @@
             }
         }
 
-        // 신청 버튼 클릭 이벤트
+        // 신청 버튼 클릭 이벤트 (진단 결과 체크)
         function handleApplyClick(e) {
+            // 진단 테스트 미통과 시 토스트 표시 (신청은 허용)
+            if (!isDiagnosisPassed) {
+                showToast();
+            }
             recordClick();
         }
 
@@ -938,10 +1024,12 @@
             applyBtnFinal.addEventListener('click', handleApplyClick);
         }
 
-        // 히어로 CTA 버튼도 추적
+        // 히어로 CTA 버튼도 추적 (진단 체크 없이)
         const heroCta = document.querySelector('.hero .cta-button');
         if (heroCta) {
-            heroCta.addEventListener('click', handleApplyClick);
+            heroCta.addEventListener('click', () => {
+                recordClick();
+            });
         }
 
         // 초기 로드
