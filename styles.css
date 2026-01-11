@@ -1905,3 +1905,802 @@ strong {
 
     /* Final CTA Mobile */
     .final-cta {
+        padding: 60px 20px;
+    }
+
+    .final-cta-box {
+        padding: 40px 24px;
+    }
+
+    .final-headline {
+        font-size: 28px;
+    }
+
+    .final-benefits {
+        flex-direction: column;
+        gap: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-headline {
+        font-size: 32px;
+    }
+
+    .package-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .package-card {
+        padding: 28px 24px;
+    }
+}
+
+/* Tablet */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .solution-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+    .solution-card {
+        padding: 32px 20px;
+    }
+
+    .package-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .process-timeline {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+    }
+
+    .process-timeline::before {
+        display: none;
+    }
+}
+
+/* ============================================
+   8주 프로세스 섹션 스타일
+   ============================================ */
+
+.process-phase {
+    margin-bottom: 48px;
+}
+
+.process-phase:last-child {
+    margin-bottom: 0;
+}
+
+.phase-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.phase-badge {
+    display: inline-block;
+    background: var(--primary);
+    color: var(--white);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 8px 20px;
+    border-radius: 30px;
+    margin-bottom: 16px;
+}
+
+.phase-badge.badge-light {
+    background: var(--bg-main);
+    color: var(--primary);
+    border: 1px solid var(--border);
+}
+
+.phase-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+}
+
+.phase-desc {
+    font-size: 14px;
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+/* Phase Divider */
+.phase-divider {
+    background: var(--bg-main);
+    border-radius: 12px;
+    padding: 32px 24px;
+    margin: 48px 0;
+    text-align: center;
+    border-left: 4px solid var(--primary);
+}
+
+.phase-divider-text {
+    font-size: 15px;
+    color: var(--text-gray);
+    line-height: 1.8;
+}
+
+.phase-divider-text strong {
+    color: var(--primary);
+}
+
+/* Autonomous Phase Styling */
+.phase-autonomous .process-timeline {
+    opacity: 0.9;
+}
+
+.phase-autonomous .process-item {
+    background: var(--bg-main);
+    border: 1px solid var(--border);
+}
+
+.phase-autonomous .process-week {
+    background: var(--white);
+    color: var(--primary-light);
+}
+
+.phase-note {
+    background: var(--white);
+    border: 1px dashed var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 24px;
+    text-align: center;
+}
+
+.phase-note p {
+    font-size: 14px;
+    color: var(--text-light);
+    line-height: 1.7;
+}
+
+/* ============================================
+   참여 가능성 진단 테스트 스타일
+   ============================================ */
+
+.diagnosis-test {
+    background: var(--bg-main);
+    border-radius: 16px;
+    padding: 40px 32px;
+    margin: 48px 0;
+}
+
+.diagnosis-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.diagnosis-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+}
+
+.diagnosis-subtitle {
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+.diagnosis-checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 600px;
+    margin: 0 auto 32px;
+}
+
+.diagnosis-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.diagnosis-item:hover {
+    border-color: var(--primary-light);
+}
+
+.diagnosis-checkbox {
+    display: none;
+}
+
+.diagnosis-checkmark {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--border);
+    border-radius: 6px;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.diagnosis-checkbox:checked + .diagnosis-checkmark {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+.diagnosis-checkbox:checked + .diagnosis-checkmark::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 8px;
+    width: 5px;
+    height: 10px;
+    border: solid var(--white);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.diagnosis-text {
+    font-size: 15px;
+    color: var(--text-gray);
+    line-height: 1.5;
+}
+
+.diagnosis-result {
+    text-align: center;
+    padding: 24px;
+    border-radius: 12px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    max-width: 500px;
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+.diagnosis-result.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.diagnosis-count {
+    font-size: 14px;
+    color: var(--text-light);
+    margin-bottom: 16px;
+}
+
+.diagnosis-count span {
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 18px;
+}
+
+.diagnosis-message .result-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+}
+
+.diagnosis-message .result-subtitle {
+    font-size: 15px;
+    color: var(--text-gray);
+}
+
+.diagnosis-result.result-good {
+    border-color: var(--primary-light);
+    background: linear-gradient(135deg, rgba(31, 58, 95, 0.03), rgba(59, 110, 168, 0.05));
+}
+
+.diagnosis-result.result-good .result-title {
+    color: var(--primary);
+}
+
+.diagnosis-result.result-wait {
+    border-color: var(--border);
+    background: var(--white);
+}
+
+.diagnosis-result.result-wait .result-title {
+    color: var(--text-gray);
+}
+
+/* 결과 보러가기 버튼 */
+.diagnosis-scroll-btn {
+    display: block;
+    margin: 24px auto 0;
+    padding: 14px 32px;
+    background: var(--primary);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.diagnosis-scroll-btn:hover {
+    background: var(--primary-light);
+    transform: translateY(-1px);
+}
+
+/* ============================================
+   신청 현황 카운터 스타일
+   ============================================ */
+
+.application-status {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    padding: 24px 40px;
+    margin: 32px auto;
+    max-width: 400px;
+}
+
+.status-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.status-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.5px;
+}
+
+.status-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--white);
+}
+
+.status-value span {
+    font-size: 24px;
+    color: #A8C5E2;
+}
+
+.status-divider {
+    width: 1px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* 버튼 비활성화 상태 */
+.btn-disabled {
+    background: rgba(255, 255, 255, 0.3) !important;
+    color: rgba(255, 255, 255, 0.6) !important;
+    cursor: not-allowed !important;
+}
+
+.btn-disabled:hover {
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.pricing-urgency.closed {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* 진단 테스트 모바일 반응형 */
+@media (max-width: 768px) {
+    .diagnosis-test {
+        padding: 32px 20px;
+        margin: 32px 0;
+    }
+
+    .diagnosis-title {
+        font-size: 20px;
+    }
+
+    .diagnosis-item {
+        padding: 14px 16px;
+        gap: 12px;
+    }
+
+    .diagnosis-checkmark {
+        width: 22px;
+        height: 22px;
+    }
+
+    .diagnosis-text {
+        font-size: 14px;
+    }
+
+    .diagnosis-result {
+        padding: 20px 16px;
+    }
+
+    .diagnosis-message .result-title {
+        font-size: 16px;
+    }
+
+    .diagnosis-message .result-subtitle {
+        font-size: 14px;
+    }
+
+    /* 8주 프로세스 모바일 */
+    .phase-header {
+        margin-bottom: 28px;
+    }
+
+    .phase-title {
+        font-size: 20px;
+    }
+
+    .phase-desc {
+        font-size: 13px;
+    }
+
+    .phase-divider {
+        padding: 24px 20px;
+        margin: 32px 0;
+    }
+
+    .phase-divider-text {
+        font-size: 14px;
+    }
+
+    .phase-note {
+        padding: 16px;
+    }
+
+    .phase-note p {
+        font-size: 13px;
+    }
+
+    /* 신청 현황 모바일 */
+    .application-status {
+        gap: 24px;
+        padding: 20px 24px;
+        max-width: 320px;
+    }
+
+    .status-value {
+        font-size: 16px;
+    }
+
+    .status-value span {
+        font-size: 20px;
+    }
+
+    .status-divider {
+        height: 32px;
+    }
+
+    .diagnosis-scroll-btn {
+        padding: 12px 28px;
+        font-size: 14px;
+    }
+}
+
+/* ============================================
+   ✅ Diagnosis checklist layout fix
+   ============================================ */
+.diagnosis, .diagnosis-section, #diagnosis {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.diagnosis-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+/* 태블릿 이상 2열 */
+@media (min-width: 768px) {
+    .diagnosis-list {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px 16px;
+    }
+}
+
+.diagnosis-item,
+.diagnosis-list label {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 14px;
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 12px;
+    background: rgba(255,255,255,0.06);
+    line-height: 1.55;
+}
+
+.diagnosis-list input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    flex: 0 0 auto;
+}
+
+/* ============================================
+   ✅ Process timeline layout fix
+   ============================================ */
+.process, .process-section, #process {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+.process-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-top: 18px;
+}
+
+/* 데스크탑 4열 */
+@media (min-width: 1024px) {
+    .process-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 18px;
+    }
+}
+
+/* 카드 */
+.process-card {
+    border: 1px solid rgba(17,24,39,0.12);
+    border-radius: 16px;
+    padding: 18px;
+    background: #fff;
+}
+
+/* "WEEK 1" 같은 버튼/배지 */
+.week-badge, .week-btn, .week-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(17,24,39,0.18);
+    background: #fff;
+    white-space: nowrap;
+}
+
+/* 혹시 absolute로 박혀있으면 강제 해제 */
+.process * {
+    position: static;
+}
+
+/* ============================================
+   ✅ 진단 섹션 대비 개선 (프리미엄 SaaS 톤)
+   ============================================ */
+
+/* 진단 테스트 섹션 - 딥 네이비 그라데이션 배경 */
+.diagnosis-test {
+    background: linear-gradient(180deg, #0F2747 0%, #132F54 100%);
+    border-radius: 16px;
+    padding: 48px 32px;
+    margin: 48px 0;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* 진단 헤더 텍스트 */
+.diagnosis-header {
+    text-align: center;
+    margin-bottom: 36px;
+}
+
+.diagnosis-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+}
+
+.diagnosis-subtitle {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+/* 체크박스 항목 카드 */
+.diagnosis-checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 640px;
+    margin: 0 auto 36px;
+}
+
+.diagnosis-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 12px;
+    padding: 18px 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.diagnosis-item:hover {
+    background: rgba(255, 255, 255, 0.10);
+    border-color: rgba(255, 255, 255, 0.24);
+}
+
+/* 체크박스 숨김 */
+.diagnosis-checkbox {
+    display: none;
+}
+
+/* 커스텀 체크마크 */
+.diagnosis-checkmark {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    border: 2px solid rgba(255, 255, 255, 0.45);
+    border-radius: 6px;
+    position: relative;
+    transition: all 0.2s ease;
+    background: transparent;
+}
+
+/* 체크 시 */
+.diagnosis-checkbox:checked + .diagnosis-checkmark {
+    background: #3B6EA8;
+    border-color: #3B6EA8;
+}
+
+.diagnosis-checkbox:checked + .diagnosis-checkmark::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 8px;
+    width: 5px;
+    height: 10px;
+    border: solid #FFFFFF;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+/* 체크박스 텍스트 */
+.diagnosis-text {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.88);
+    line-height: 1.55;
+}
+
+/* 결과 박스 */
+.diagnosis-result {
+    text-align: center;
+    padding: 28px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    max-width: 520px;
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+.diagnosis-result.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.diagnosis-count {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.65);
+    margin-bottom: 16px;
+}
+
+.diagnosis-count span {
+    font-weight: 700;
+    color: #A8C5E2;
+    font-size: 20px;
+}
+
+.diagnosis-message .result-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin-bottom: 8px;
+}
+
+.diagnosis-message .result-subtitle {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+/* 좋은 결과 */
+.diagnosis-result.result-good {
+    border-color: rgba(59, 110, 168, 0.5);
+    background: rgba(59, 110, 168, 0.15);
+}
+
+.diagnosis-result.result-good .result-title {
+    color: #A8C5E2;
+}
+
+/* 대기 결과 */
+.diagnosis-result.result-wait {
+    border-color: rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.diagnosis-result.result-wait .result-title {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+/* 결과 보러가기 버튼 */
+.diagnosis-scroll-btn {
+    display: block;
+    margin: 28px auto 0;
+    padding: 16px 36px;
+    background: #3B6EA8;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.diagnosis-scroll-btn:hover {
+    background: #4A7DB8;
+    transform: translateY(-1px);
+}
+
+/* 진단 테스트 모바일 */
+@media (max-width: 768px) {
+    .diagnosis-test {
+        padding: 36px 20px;
+        margin: 32px 0;
+        border-radius: 12px;
+    }
+
+    .diagnosis-title {
+        font-size: 20px;
+    }
+
+    .diagnosis-subtitle {
+        font-size: 14px;
+    }
+
+    .diagnosis-item {
+        padding: 16px 16px;
+        gap: 12px;
+    }
+
+    .diagnosis-checkmark {
+        width: 22px;
+        height: 22px;
+    }
+
+    .diagnosis-text {
+        font-size: 14px;
+    }
+
+    .diagnosis-result {
+        padding: 24px 20px;
+    }
+
+    .diagnosis-message .result-title {
+        font-size: 18px;
+    }
+
+    .diagnosis-message .result-subtitle {
+        font-size: 14px;
+    }
+
+    .diagnosis-scroll-btn {
+        padding: 14px 32px;
+        font-size: 14px;
+    }
+}
