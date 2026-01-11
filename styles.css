@@ -385,6 +385,10 @@ strong {
     color: var(--white);
 }
 
+.solution .section-title .highlight {
+    color: #A8C5E2;
+}
+
 .solution-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
