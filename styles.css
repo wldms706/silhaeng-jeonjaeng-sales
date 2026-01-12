@@ -34,6 +34,10 @@
     /* Neutral */
     --white: #FFFFFF;
 
+    /* Urgent/Warning - 긴급 강조용 */
+    --urgent-red: #DC2626;
+    --urgent-red-hover: #B91C1C;
+
     /* Legacy aliases for compatibility */
     --primary-blue: var(--primary);
     --sub-blue: var(--primary-light);
@@ -4946,5 +4950,49 @@ p, li{
 
     .mindset-closing p {
         font-size: 15px;
+    }
+}
+
+
+/* ============================================
+   Urgent/Warning 스타일 - 긴박성 강조
+   ============================================ */
+
+/* 긴급 텍스트 강조 */
+.urgent-text {
+    color: var(--urgent-red);
+    font-weight: 700;
+}
+
+/* 긴급 경고 문구 */
+.urgent-warning {
+    color: var(--urgent-red);
+    font-size: 18px;
+    font-weight: 600;
+    margin: 20px 0 28px;
+    line-height: 1.6;
+}
+
+/* 긴급 CTA 버튼 - 레드 */
+.cta-button.cta-urgent {
+    background: var(--urgent-red);
+    border: none;
+    color: var(--white);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 14px rgba(220, 38, 38, 0.3);
+}
+
+.cta-button.cta-urgent:hover {
+    background: var(--urgent-red-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4);
+}
+
+/* 모바일 대응 */
+@media (max-width: 768px) {
+    .urgent-warning {
+        font-size: 16px;
+        margin: 16px 0 24px;
     }
 }
