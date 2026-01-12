@@ -2241,8 +2241,8 @@ strong {
     justify-content: center;
     align-items: center;
     gap: 32px;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: var(--bg-main);
+    border: 1px solid var(--border);
     border-radius: 12px;
     padding: 24px 40px;
     margin: 32px auto;
@@ -2259,25 +2259,25 @@ strong {
 .status-label {
     font-size: 12px;
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.5);
+    color: var(--text-light);
     letter-spacing: 0.5px;
 }
 
 .status-value {
     font-size: 18px;
     font-weight: 700;
-    color: var(--white);
+    color: var(--text-dark);
 }
 
 .status-value span {
     font-size: 24px;
-    color: #A8C5E2;
+    color: var(--primary);
 }
 
 .status-divider {
     width: 1px;
     height: 40px;
-    background: rgba(255, 255, 255, 0.2);
+    background: var(--border);
 }
 
 /* 버튼 비활성화 상태 */
@@ -4598,5 +4598,129 @@ p, li{
     .review-disclaimer {
         font-size: 12px;
         padding: 0 16px;
+    }
+}
+
+/* ============================================
+   가격 인식 전환 섹션 스타일
+   ============================================ */
+
+.pricing-mindset {
+    background: #FAFAFA;
+    padding: 88px 24px;
+}
+
+.mindset-title {
+    font-size: clamp(26px, 5vw, 38px);
+    font-weight: 700;
+    color: var(--text-dark);
+    text-align: center;
+    margin-bottom: 48px;
+    line-height: 1.35;
+}
+
+.mindset-content {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.mindset-content p {
+    font-size: 18px;
+    color: var(--text-gray);
+    line-height: 1.85;
+    margin-bottom: 28px;
+}
+
+.mindset-content strong {
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+.mindset-emphasis {
+    font-size: 20px !important;
+    color: var(--primary) !important;
+    font-weight: 600;
+    margin-top: 40px !important;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+}
+
+.mindset-closing {
+    max-width: 640px;
+    margin: 48px auto 0;
+    text-align: center;
+    padding: 28px 24px;
+    background: var(--white);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+}
+
+.mindset-closing p {
+    font-size: 17px;
+    color: var(--text-gray);
+    line-height: 1.75;
+    margin: 0;
+}
+
+.mindset-closing strong {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+/* 모바일 반응형 - 가격 인식 전환 */
+@media (max-width: 768px) {
+    .pricing-mindset {
+        padding: 72px 20px;
+    }
+
+    .mindset-title {
+        font-size: 26px;
+        margin-bottom: 40px;
+    }
+
+    .mindset-content p {
+        font-size: 17px;
+        line-height: 1.8;
+        margin-bottom: 24px;
+    }
+
+    .mindset-emphasis {
+        font-size: 18px !important;
+        margin-top: 32px !important;
+        padding-top: 28px;
+    }
+
+    .mindset-closing {
+        padding: 24px 20px;
+        margin-top: 40px;
+    }
+
+    .mindset-closing p {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .pricing-mindset {
+        padding: 64px 20px;
+    }
+
+    .mindset-title {
+        font-size: 24px;
+        margin-bottom: 36px;
+    }
+
+    .mindset-content p {
+        font-size: 16px;
+        margin-bottom: 22px;
+    }
+
+    .mindset-emphasis {
+        font-size: 17px !important;
+    }
+
+    .mindset-closing p {
+        font-size: 15px;
     }
 }
