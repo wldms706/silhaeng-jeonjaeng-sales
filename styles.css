@@ -3959,6 +3959,30 @@ p, li{
     color: var(--text-light);
 }
 
+.fit-desc {
+    font-size: 16px;
+    color: var(--text-gray);
+    line-height: 1.8;
+    margin-bottom: 16px;
+}
+
+.fit-desc:last-child {
+    margin-bottom: 0;
+}
+
+.fit-desc strong {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.fit-good .fit-desc {
+    color: var(--text-dark);
+}
+
+.fit-not .fit-desc {
+    color: var(--text-light);
+}
+
 /* 6. 가격 v2 */
 .pricing-v2 {
     background: var(--white);
