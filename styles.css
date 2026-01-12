@@ -3965,6 +3965,14 @@ p, li{
     padding: 100px 24px;
 }
 
+.price-subtitle {
+    font-size: 18px;
+    color: var(--text-gray);
+    text-align: center;
+    margin-top: -8px;
+    margin-bottom: 40px;
+}
+
 .price-box {
     text-align: center;
     max-width: 480px;
