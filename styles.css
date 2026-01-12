@@ -4178,6 +4178,21 @@ p, li{
     margin: 0;
 }
 
+.phase-note {
+    margin-top: 20px;
+    padding: 16px 20px;
+    background: rgba(31, 58, 95, 0.06);
+    border-radius: 8px;
+    border-left: 3px solid var(--primary);
+}
+
+.phase-note p {
+    font-size: 13px;
+    color: var(--text-gray);
+    line-height: 1.7;
+    margin: 0;
+}
+
 .curriculum-divider {
     text-align: center;
     padding: 24px 16px;
