@@ -130,7 +130,7 @@
                         <div class="review-card-list">
                             <div class="review-card">
                                 <div class="review-card-image">
-                                    <img src="review/a.jpeg" alt="충남 A 원장님 카카오톡 후기 1">
+                                    <img src="review/a.jpeg" alt="충남 A 원장님 카카오톡 후기 1" class="zoomable">
                                 </div>
                                 <div class="review-card-caption">
                                     <span class="review-card-label">카카오톡 대화</span>
@@ -142,7 +142,7 @@
                             </div>
                             <div class="review-card">
                                 <div class="review-card-image">
-                                    <img src="review/a2.jpeg" alt="충남 A 원장님 카카오톡 후기 2">
+                                    <img src="review/a2.jpeg" alt="충남 A 원장님 카카오톡 후기 2" class="zoomable">
                                 </div>
                                 <div class="review-card-caption">
                                     <span class="review-card-label">카카오톡 대화</span>
@@ -171,7 +171,7 @@
                         <div class="review-card-list">
                             <div class="review-card">
                                 <div class="review-card-image">
-                                    <img src="review/b.jpeg" alt="충남 B 원장님 카카오톡 후기 1">
+                                    <img src="review/b.jpeg" alt="충남 B 원장님 카카오톡 후기 1" class="zoomable">
                                 </div>
                                 <div class="review-card-caption">
                                     <span class="review-card-label">카카오톡 대화</span>
@@ -182,7 +182,7 @@
                             </div>
                             <div class="review-card">
                                 <div class="review-card-image">
-                                    <img src="review/b2.jpeg" alt="충남 B 원장님 카카오톡 후기 2">
+                                    <img src="review/b2.jpeg" alt="충남 B 원장님 카카오톡 후기 2" class="zoomable">
                                 </div>
                                 <div class="review-card-caption">
                                     <span class="review-card-label">카카오톡 대화</span>
@@ -212,7 +212,7 @@
                         <div class="review-card-list">
                             <div class="review-card">
                                 <div class="review-card-image">
-                                    <img src="review/C.jpeg" alt="서울 C 원장님 카카오톡 후기">
+                                    <img src="review/C.jpeg" alt="서울 C 원장님 카카오톡 후기" class="zoomable">
                                 </div>
                                 <div class="review-card-caption">
                                     <span class="review-card-label">카카오톡 대화</span>
@@ -736,6 +736,15 @@
         </div>
     </section>
 
+    <!-- 이미지 확대 모달 -->
+    <div class="img-modal" id="imgModal" aria-hidden="true">
+        <div class="img-modal__backdrop"></div>
+        <div class="img-modal__content">
+            <img id="imgModalImg" alt="" />
+            <button class="img-modal__close" type="button">닫기</button>
+        </div>
+    </div>
+
     <!-- Toast 알림 -->
     <div class="toast-container" id="toastContainer">
         <div class="toast" id="diagnosisToast">
@@ -1110,6 +1119,41 @@
                     .on('postgres_changes', { event: '*', schema: 'public', table: 'applications' }, loadCounts)
                     .subscribe();
             }
+
+            // ============================================
+            // 이미지 확대 모달
+            // ============================================
+            const imgModal = document.getElementById('imgModal');
+            const imgModalImg = document.getElementById('imgModalImg');
+
+            // 이미지 클릭 시 모달 오픈
+            document.addEventListener('click', (e) => {
+                const img = e.target.closest('img.zoomable');
+                if (!img) return;
+                imgModal.classList.add('is-open');
+                imgModal.setAttribute('aria-hidden', 'false');
+                imgModalImg.src = img.src;
+                imgModalImg.alt = img.alt || '후기 이미지';
+            });
+
+            // 닫기: 배경/버튼 클릭
+            document.addEventListener('click', (e) => {
+                if (!imgModal.classList.contains('is-open')) return;
+                if (e.target.classList.contains('img-modal__backdrop') || e.target.classList.contains('img-modal__close')) {
+                    imgModal.classList.remove('is-open');
+                    imgModal.setAttribute('aria-hidden', 'true');
+                    imgModalImg.src = '';
+                }
+            });
+
+            // ESC로 닫기
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && imgModal.classList.contains('is-open')) {
+                    imgModal.classList.remove('is-open');
+                    imgModal.setAttribute('aria-hidden', 'true');
+                    imgModalImg.src = '';
+                }
+            });
         }); // DOMContentLoaded 끝
     </script>
 </body>
