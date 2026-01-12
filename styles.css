@@ -3289,3 +3289,274 @@ p, li{
         font-size: 12px;
     }
 }
+
+/* ============================================
+   5-8주차 확장 & 고도화 섹션 스타일
+   ============================================ */
+
+.phase-expansion {
+    margin-top: 48px;
+}
+
+.expansion-intro {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 48px;
+    padding: 32px 24px;
+    background: var(--white);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+}
+
+.expansion-intro p {
+    font-size: 17px;
+    color: var(--text-gray);
+    line-height: 1.85;
+    margin: 0;
+}
+
+.expansion-intro strong {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+/* 주차별 타임라인 */
+.expansion-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.expansion-week {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 24px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.expansion-week:hover {
+    border-color: var(--primary-light);
+    box-shadow: 0 4px 20px rgba(31, 58, 95, 0.08);
+}
+
+.expansion-week-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.expansion-week-badge {
+    display: inline-block;
+    background: var(--primary);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 6px 14px;
+    border-radius: 4px;
+}
+
+.expansion-week-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 0;
+}
+
+.expansion-purpose {
+    font-size: 15px;
+    color: var(--text-gray);
+    line-height: 1.7;
+    margin: 0 0 20px 0;
+    padding-left: 4px;
+}
+
+.expansion-actions {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.expansion-actions li {
+    font-size: 14px;
+    color: var(--text-gray);
+    line-height: 1.6;
+    padding-left: 20px;
+    position: relative;
+}
+
+.expansion-actions li::before {
+    content: '·';
+    position: absolute;
+    left: 4px;
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 16px;
+}
+
+/* 변화 블록 */
+.expansion-change {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px 18px;
+    background: var(--bg-main);
+    border-radius: 10px;
+    border-left: 3px solid var(--primary);
+}
+
+.change-label {
+    flex-shrink: 0;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--primary);
+    background: var(--white);
+    padding: 4px 10px;
+    border-radius: 4px;
+    border: 1px solid var(--primary);
+    letter-spacing: 0.5px;
+}
+
+.expansion-change p {
+    font-size: 15px;
+    color: var(--text-dark);
+    line-height: 1.65;
+    margin: 0;
+    font-weight: 500;
+}
+
+/* 마무리 블록 */
+.expansion-closing {
+    text-align: center;
+    max-width: 560px;
+    margin: 48px auto 0;
+    padding: 36px 28px;
+    background: var(--primary);
+    border-radius: 16px;
+}
+
+.expansion-closing p {
+    font-size: 17px;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.85;
+    margin: 0;
+}
+
+.expansion-closing strong {
+    color: var(--white);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.closing-highlight {
+    color: #A8C5E2;
+    font-weight: 700;
+}
+
+/* 모바일 반응형 */
+@media (max-width: 768px) {
+    .phase-expansion {
+        margin-top: 36px;
+    }
+
+    .expansion-intro {
+        padding: 24px 20px;
+        margin-bottom: 36px;
+    }
+
+    .expansion-intro p {
+        font-size: 16px;
+    }
+
+    .expansion-timeline {
+        gap: 20px;
+    }
+
+    .expansion-week {
+        padding: 24px 20px;
+        border-radius: 14px;
+    }
+
+    .expansion-week-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 14px;
+    }
+
+    .expansion-week-title {
+        font-size: 18px;
+    }
+
+    .expansion-purpose {
+        font-size: 14px;
+        margin-bottom: 16px;
+        padding-left: 0;
+    }
+
+    .expansion-actions {
+        gap: 8px;
+        margin-bottom: 16px;
+    }
+
+    .expansion-actions li {
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .expansion-change {
+        flex-direction: column;
+        gap: 10px;
+        padding: 14px 16px;
+    }
+
+    .expansion-change p {
+        font-size: 14px;
+    }
+
+    .expansion-closing {
+        padding: 28px 20px;
+        margin-top: 36px;
+        border-radius: 14px;
+    }
+
+    .expansion-closing p {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .expansion-intro p {
+        font-size: 15px;
+        line-height: 1.9;
+    }
+
+    .expansion-week {
+        padding: 20px 18px;
+    }
+
+    .expansion-week-badge {
+        font-size: 10px;
+        padding: 5px 12px;
+    }
+
+    .expansion-week-title {
+        font-size: 17px;
+    }
+
+    .expansion-actions li {
+        font-size: 13px;
+    }
+
+    .expansion-closing p {
+        font-size: 15px;
+    }
+}
