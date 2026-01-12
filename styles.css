@@ -4996,3 +4996,73 @@ p, li{
         margin: 16px 0 24px;
     }
 }
+
+
+/* ============================================
+   진단 섹션 스타일
+   ============================================ */
+
+.diagnosis-v2 {
+    background: var(--bg-main);
+}
+
+.diagnosis-content {
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.diagnosis-desc {
+    font-size: 17px;
+    color: var(--text-gray);
+    line-height: 1.8;
+    margin-bottom: 32px;
+}
+
+.diagnosis-btn {
+    display: inline-block;
+    padding: 18px 40px;
+    background: var(--primary);
+    color: var(--white);
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    border: 2px solid var(--primary);
+}
+
+.diagnosis-btn:hover {
+    background: var(--primary-dark);
+    border-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(31, 58, 95, 0.25);
+}
+
+.diagnosis-note {
+    margin-top: 28px;
+    font-size: 15px;
+    color: var(--text-light);
+    line-height: 1.7;
+}
+
+.diagnosis-note strong {
+    color: var(--primary);
+}
+
+@media (max-width: 768px) {
+    .diagnosis-desc {
+        font-size: 16px;
+        margin-bottom: 28px;
+    }
+
+    .diagnosis-btn {
+        padding: 16px 32px;
+        font-size: 15px;
+    }
+
+    .diagnosis-note {
+        font-size: 14px;
+        margin-top: 24px;
+    }
+}
