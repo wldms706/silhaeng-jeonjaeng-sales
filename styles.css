@@ -3560,3 +3560,882 @@ p, li{
         font-size: 15px;
     }
 }
+
+/* ============================================
+   V2 리빌드 스타일 - 결정이 쉬운 랜딩
+   글씨 크기 확대 + 문단 간소화
+   ============================================ */
+
+/* 공통 타이틀 v2 - 더 큰 폰트 */
+.section-title-v2 {
+    font-size: clamp(32px, 7vw, 48px);
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--text-dark);
+    margin-bottom: 40px;
+    letter-spacing: -0.5px;
+}
+
+.section-title-v2 .highlight {
+    color: var(--primary);
+}
+
+/* 1. 문제 인식 v2 */
+.problem-v2 {
+    background: var(--bg-main);
+    padding: 100px 24px;
+}
+
+.problem-list-v2 {
+    max-width: 640px;
+    margin: 0 auto 48px;
+}
+
+.problem-line {
+    font-size: 20px;
+    color: var(--text-gray);
+    line-height: 1.8;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.problem-line strong {
+    color: var(--text-dark);
+}
+
+.problem-closing {
+    text-align: center;
+    font-size: 18px;
+    color: var(--text-gray);
+    line-height: 1.75;
+    max-width: 500px;
+    margin: 0 auto;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+}
+
+.problem-closing strong {
+    color: var(--primary);
+}
+
+/* 2. 왜 이 프로그램인가 v2 */
+.why-v2 {
+    background: var(--primary);
+    color: var(--white);
+    padding: 100px 24px;
+}
+
+.why-v2 .section-tag {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.why-v2 .section-title-v2 {
+    color: var(--white);
+}
+
+.why-v2 .section-title-v2 .highlight {
+    color: #A8C5E2;
+}
+
+.why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 56px;
+}
+
+.why-card {
+    padding: 32px 24px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+}
+
+.why-number {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+}
+
+.why-card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.why-card p {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.7;
+}
+
+.why-card strong {
+    color: var(--white);
+}
+
+.why-philosophy {
+    text-align: center;
+    max-width: 480px;
+    margin: 0 auto;
+    padding-top: 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.why-philosophy p {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 8px;
+}
+
+.why-philosophy strong {
+    color: var(--white);
+}
+
+/* 3. 실제 결과 v2 */
+.results-v2 {
+    background: var(--white);
+    padding: 100px 24px;
+}
+
+.results-note {
+    max-width: 600px;
+    margin: 0 auto 48px;
+    text-align: center;
+}
+
+.results-note p {
+    font-size: 17px;
+    color: var(--text-gray);
+    line-height: 1.75;
+    margin-bottom: 8px;
+}
+
+.results-note strong {
+    color: var(--text-dark);
+}
+
+.story-grid-v2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.story-card-v2 {
+    background: var(--bg-main);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 24px;
+}
+
+.story-header-v2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.story-header-v2 .story-location {
+    font-size: 12px;
+    color: var(--primary);
+    background: rgba(31, 58, 95, 0.08);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.story-header-v2 .story-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.story-result {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+}
+
+.story-result strong {
+    color: var(--primary);
+}
+
+.story-detail {
+    font-size: 14px;
+    color: var(--text-light);
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+.results-bottom {
+    text-align: center;
+    max-width: 560px;
+    margin: 48px auto 0;
+    padding: 32px 24px;
+    background: var(--primary);
+    border-radius: 12px;
+}
+
+.results-bottom p {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.7;
+}
+
+.results-bottom strong {
+    color: var(--white);
+}
+
+/* 비디오 v2 */
+.video-v2 {
+    background: var(--bg-main);
+    padding: 80px 24px;
+}
+
+.video-v2 .section-title-v2 {
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.video-desc {
+    text-align: center;
+    font-size: 16px;
+    color: var(--text-light);
+    margin-bottom: 40px;
+}
+
+/* 4. 프로필 v2 */
+.profile-v2 {
+    background: var(--white);
+    padding: 100px 24px;
+}
+
+.profile-subtitle-v2 {
+    text-align: center;
+    font-size: 16px;
+    color: var(--text-light);
+    margin-top: -28px;
+    margin-bottom: 48px;
+}
+
+.profile-content-v2 {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 48px;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.profile-image-v2 img {
+    width: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.profile-intro-v2 {
+    font-size: 18px;
+    color: var(--text-gray);
+    line-height: 1.7;
+    margin-bottom: 24px;
+}
+
+.profile-intro-v2 strong {
+    color: var(--text-dark);
+}
+
+.profile-stats {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.profile-stats li {
+    font-size: 15px;
+    color: var(--text-gray);
+    background: var(--bg-main);
+    padding: 10px 16px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+}
+
+.profile-stats li strong {
+    color: var(--primary);
+}
+
+.profile-method {
+    font-size: 17px;
+    color: var(--text-gray);
+    line-height: 1.7;
+}
+
+.profile-method strong {
+    color: var(--text-dark);
+}
+
+/* 5. 적합성 v2 */
+.fit-v2 {
+    background: var(--bg-main);
+    padding: 100px 24px;
+}
+
+.fit-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.fit-card {
+    padding: 32px 28px;
+    border-radius: 12px;
+}
+
+.fit-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.fit-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.fit-card li {
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 12px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.fit-card li::before {
+    content: '·';
+    position: absolute;
+    left: 4px;
+    font-weight: 700;
+}
+
+.fit-card li strong {
+    font-weight: 600;
+}
+
+.fit-good {
+    background: var(--white);
+    border: 1px solid var(--primary);
+}
+
+.fit-good h3 {
+    color: var(--primary);
+}
+
+.fit-good li {
+    color: var(--text-gray);
+}
+
+.fit-good li::before {
+    color: var(--primary);
+}
+
+.fit-not {
+    background: var(--white);
+    border: 1px solid var(--border);
+}
+
+.fit-not h3 {
+    color: var(--text-light);
+}
+
+.fit-not li {
+    color: var(--text-light);
+}
+
+/* 6. 가격 v2 */
+.pricing-v2 {
+    background: var(--white);
+    padding: 100px 24px;
+}
+
+.price-box {
+    text-align: center;
+    max-width: 480px;
+    margin: 0 auto 40px;
+    padding: 40px 32px;
+    background: var(--primary);
+    border-radius: 16px;
+}
+
+.price-main {
+    margin-bottom: 12px;
+}
+
+.price-number {
+    font-size: 64px;
+    font-weight: 900;
+    color: var(--white);
+    letter-spacing: -2px;
+}
+
+.price-unit {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--white);
+    margin-left: 4px;
+}
+
+.price-note {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 20px;
+}
+
+.price-meta {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+}
+
+.price-meta span {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.price-meta strong {
+    color: var(--white);
+}
+
+.included-box {
+    max-width: 560px;
+    margin: 0 auto 40px;
+    padding: 32px 28px;
+    background: var(--bg-main);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+.included-box h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.included-box ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.included-box li {
+    font-size: 15px;
+    color: var(--text-gray);
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    padding-left: 24px;
+    position: relative;
+}
+
+.included-box li:last-child {
+    border-bottom: none;
+}
+
+.included-box li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.included-box li strong {
+    color: var(--text-dark);
+}
+
+/* 커리큘럼 토글 */
+.curriculum-toggle {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.curriculum-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-gray);
+    font-size: 15px;
+    font-weight: 500;
+    padding: 14px 28px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.curriculum-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.toggle-arrow {
+    font-size: 12px;
+    transition: transform 0.3s ease;
+}
+
+.curriculum-btn.open .toggle-arrow {
+    transform: rotate(180deg);
+}
+
+/* 커리큘럼 상세 (접힘) */
+.curriculum-detail {
+    max-width: 680px;
+    margin: 0 auto 40px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+
+.curriculum-detail.open {
+    max-height: 2000px;
+}
+
+.curriculum-phase {
+    background: var(--bg-main);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 24px;
+    margin-bottom: 16px;
+}
+
+.curriculum-phase h4 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 8px;
+}
+
+.curriculum-phase.phase-light h4 {
+    color: var(--text-gray);
+}
+
+.phase-sub {
+    font-size: 14px;
+    color: var(--text-light);
+    margin-bottom: 24px;
+}
+
+.week-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.week-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.week-badge {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    background: var(--primary);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 700;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.week-badge.light {
+    background: var(--text-light);
+}
+
+.week-item strong {
+    display: block;
+    font-size: 15px;
+    color: var(--text-dark);
+    margin-bottom: 4px;
+}
+
+.week-item p {
+    font-size: 13px;
+    color: var(--text-light);
+    line-height: 1.5;
+    margin: 0;
+}
+
+.curriculum-divider {
+    text-align: center;
+    padding: 24px 16px;
+}
+
+.curriculum-divider p {
+    font-size: 15px;
+    color: var(--text-gray);
+    line-height: 1.7;
+}
+
+.curriculum-divider strong {
+    color: var(--text-dark);
+}
+
+.curriculum-closing {
+    text-align: center;
+    padding: 28px 24px;
+    background: var(--primary);
+    border-radius: 12px;
+    margin-top: 16px;
+}
+
+.curriculum-closing p {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.7;
+}
+
+.curriculum-closing strong {
+    color: var(--white);
+}
+
+.curriculum-closing .highlight {
+    color: #A8C5E2;
+}
+
+/* 최종 CTA */
+.final-cta {
+    text-align: center;
+    max-width: 480px;
+    margin: 40px auto 0;
+}
+
+.cta-trigger {
+    font-size: 17px;
+    color: var(--text-gray);
+    line-height: 1.7;
+    margin-bottom: 32px;
+}
+
+.cta-trigger strong {
+    color: var(--text-dark);
+}
+
+.cta-final {
+    display: inline-block;
+    background: var(--primary);
+    color: var(--white);
+    font-size: 18px;
+    font-weight: 700;
+    padding: 20px 56px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    animation: none;
+}
+
+.cta-final:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(31, 58, 95, 0.25);
+}
+
+.cta-urgency {
+    font-size: 14px;
+    color: var(--text-light);
+    margin-top: 16px;
+}
+
+/* FAQ v2 */
+.faq-v2 {
+    background: var(--bg-main);
+    padding: 80px 24px;
+}
+
+.faq-list-v2 {
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.faq-item-v2 {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin-bottom: 16px;
+}
+
+.faq-item-v2 h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+}
+
+.faq-item-v2 p {
+    font-size: 15px;
+    color: var(--text-gray);
+    line-height: 1.65;
+}
+
+.faq-item-v2 strong {
+    color: var(--primary);
+}
+
+/* ============================================
+   V2 반응형
+   ============================================ */
+@media (max-width: 768px) {
+    .section-title-v2 {
+        font-size: 28px;
+    }
+
+    .problem-line {
+        font-size: 17px;
+    }
+
+    .why-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .story-grid-v2 {
+        grid-template-columns: 1fr;
+    }
+
+    .story-result {
+        font-size: 20px;
+    }
+
+    .profile-content-v2 {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .profile-image-v2 {
+        max-width: 240px;
+        margin: 0 auto;
+    }
+
+    .profile-stats {
+        justify-content: center;
+    }
+
+    .fit-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .price-number {
+        font-size: 52px;
+    }
+
+    .price-meta {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .week-item {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .week-badge {
+        width: auto;
+        height: auto;
+        padding: 6px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .problem-v2,
+    .why-v2,
+    .results-v2,
+    .profile-v2,
+    .fit-v2,
+    .pricing-v2 {
+        padding: 72px 20px;
+    }
+
+    .section-title-v2 {
+        font-size: 26px;
+        margin-bottom: 32px;
+    }
+
+    .problem-line {
+        font-size: 16px;
+    }
+
+    .problem-closing {
+        font-size: 16px;
+    }
+
+    .why-card {
+        padding: 24px 20px;
+    }
+
+    .why-card h3 {
+        font-size: 18px;
+    }
+
+    .results-note p {
+        font-size: 15px;
+    }
+
+    .story-card-v2 {
+        padding: 24px 20px;
+    }
+
+    .story-result {
+        font-size: 18px;
+    }
+
+    .profile-intro-v2 {
+        font-size: 16px;
+    }
+
+    .fit-card {
+        padding: 24px 20px;
+    }
+
+    .price-box {
+        padding: 32px 24px;
+    }
+
+    .price-number {
+        font-size: 44px;
+    }
+
+    .price-unit {
+        font-size: 22px;
+    }
+
+    .included-box {
+        padding: 24px 20px;
+    }
+
+    .curriculum-phase {
+        padding: 24px 20px;
+    }
+
+    .cta-final {
+        width: 100%;
+        padding: 18px 32px;
+        font-size: 17px;
+    }
+
+    .faq-item-v2 {
+        padding: 20px 20px;
+    }
+}
