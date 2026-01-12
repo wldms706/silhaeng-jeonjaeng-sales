@@ -84,7 +84,7 @@
         </div>
     </section>
 
-    <!-- 3. 실제 결과 -->
+    <!-- 3. 실제 결과 - 무한 캐러셀 -->
     <section class="section results-v2">
         <div class="container">
             <p class="section-tag">REAL RESULTS</p>
@@ -95,57 +95,195 @@
                 <p>이분들은 <strong>단 1회 코칭</strong>만 받고 바뀌기 시작한 단계이기 때문입니다.</p>
                 <p>그럼에도 문의가 들어오고, 예약이 생기고, <strong>매출이 실제로 발생했습니다.</strong></p>
             </div>
+        </div>
 
-            <div class="story-grid-v2">
-                <div class="story-card-v2">
-                    <div class="story-header-v2">
-                        <span class="story-location">충남</span>
-                        <span class="story-name">A 원장님</span>
+        <!-- 무한 캐러셀 (container 밖으로) -->
+        <div class="review-carousel">
+            <div class="review-track">
+                <!-- 원본 카드 6개 -->
+                <div class="review-card">
+                    <div class="review-card-header">
+                        <span class="review-location">충남</span>
+                        <span class="review-name">A 원장님</span>
                     </div>
-                    <p class="story-result">월 매출 <strong>400만원</strong> 이상 유지</p>
-                    <p class="story-detail">오픈하자마자 릴스 제작 지원 → 꾸준한 매출 흐름 형성</p>
+                    <p class="review-content">
+                        오픈하자마자 지은 원장님이 릴스를 직접 만들어주셔서 바로 홍보했어요.
+                        그때부터 흐름이 잡혔고,
+                        지금은 꾸준히 <strong>월 매출 400만원</strong> 이상 나오고 있어요.
+                    </p>
                     <div class="review-btn-group">
-                        <button class="review-btn" onclick="openReviewModal('review/a.jpeg')">후기 보기</button>
-                        <button class="review-btn" onclick="openReviewModal('review/a2.jpeg')">후기 보기</button>
+                        <button class="review-btn" onclick="openReviewModal('review/a.jpeg')">후기 이미지 보기</button>
+                        <button class="review-btn" onclick="openReviewModal('review/a2.jpeg')">후기 이미지 보기</button>
                     </div>
                 </div>
 
-                <div class="story-card-v2">
-                    <div class="story-header-v2">
-                        <span class="story-location">충남</span>
-                        <span class="story-name">B 원장님</span>
+                <div class="review-card">
+                    <div class="review-card-header">
+                        <span class="review-location">충남</span>
+                        <span class="review-name">B 원장님</span>
                     </div>
-                    <p class="story-result">한 달 만에 <strong>매출 2배</strong></p>
-                    <p class="story-detail">350만원 정체 → 릴스+광고 직접 집행 → 2배 상승</p>
+                    <p class="review-content">
+                        매출이 늘 <strong>350~400만원</strong>에서 정체돼 있었고
+                        뭘 어떻게 실행해야 할지 막막했어요.
+                        지은 원장님이 릴스 기획부터 편집, 광고 집행까지 직접 해주셨고,
+                        <strong>한 달 만에 매출이 2배</strong>로 올랐습니다.
+                    </p>
                     <div class="review-btn-group">
-                        <button class="review-btn" onclick="openReviewModal('review/b.jpeg')">후기 보기</button>
-                        <button class="review-btn" onclick="openReviewModal('review/b2.jpeg')">후기 보기</button>
+                        <button class="review-btn" onclick="openReviewModal('review/b.jpeg')">후기 이미지 보기</button>
+                        <button class="review-btn" onclick="openReviewModal('review/b2.jpeg')">후기 이미지 보기</button>
                     </div>
                 </div>
 
-                <div class="story-card-v2">
-                    <div class="story-header-v2">
-                        <span class="story-location">서울</span>
-                        <span class="story-name">D 원장님</span>
+                <div class="review-card">
+                    <div class="review-card-header">
+                        <span class="review-location">서울</span>
+                        <span class="review-name">C 원장님</span>
                     </div>
-                    <p class="story-result">300 → <strong>500만원</strong></p>
-                    <p class="story-detail">가격 조정 + 홍보 방식 변경 → 한 달 만에 200만원 증가</p>
+                    <p class="review-content">
+                        샵 매출이 불안해서 유치원 보조 교사로 투잡을 하고 있었어요.
+                        그런데 매출이 오르는 걸 체감하면서
+                        이제는 <strong>샵에만 집중</strong>할 수 있게 됐어요.
+                    </p>
+                    <button class="review-btn" onclick="openReviewModal('review/C.jpeg')">후기 이미지 보기</button>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-card-header">
+                        <span class="review-location">서울</span>
+                        <span class="review-name">D 원장님</span>
+                    </div>
+                    <p class="review-content">
+                        1:1 컨설팅을 듣고 가격 조정과 홍보 방식을 바꿨습니다.
+                        그 결과 <strong>한 달 만에 매출이 300만원에서 500만원</strong>으로 증가했어요.
+                    </p>
                     <div class="review-btn-group">
-                        <button class="review-btn" onclick="openReviewModal('review/d.jpeg')">후기 보기</button>
-                        <button class="review-btn" onclick="openReviewModal('review/d2.png')">후기 보기</button>
+                        <button class="review-btn" onclick="openReviewModal('review/d.jpeg')">후기 이미지 보기</button>
+                        <button class="review-btn" onclick="openReviewModal('review/d2.png')">후기 이미지 보기</button>
                     </div>
                 </div>
 
-                <div class="story-card-v2">
-                    <div class="story-header-v2">
-                        <span class="story-location">경기</span>
-                        <span class="story-name">E 원장님</span>
+                <div class="review-card">
+                    <div class="review-card-header">
+                        <span class="review-location">경기도</span>
+                        <span class="review-name">E 원장님</span>
                     </div>
-                    <p class="story-result">투잡 정리, <strong>샵에만 집중</strong></p>
-                    <p class="story-detail">100만원 미만 → 230만원대 → 투잡 알바 정리</p>
-                    <button class="review-btn" onclick="openReviewModal('review/e1.jpeg')">후기 보기</button>
+                    <p class="review-content">
+                        월 매출이 <strong>100만원</strong>도 안 돼서 헬스장 투잡 알바를 했었어요.
+                        1:1 컨설팅 때 만들어준 릴스 대본으로 광고를 돌렸고,
+                        매출이 <strong>230만원대</strong>까지 올라 투잡을 정리했습니다.
+                        지금은 샵 운영에만 전념하고 있어요.
+                    </p>
+                    <button class="review-btn" onclick="openReviewModal('review/e1.jpeg')">후기 이미지 보기</button>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-card-header">
+                        <span class="review-location">서울</span>
+                        <span class="review-name">F 원장님</span>
+                    </div>
+                    <p class="review-content">
+                        1:1 컨설팅을 받은 뒤
+                        지은 원장님이 잡아준 방향대로 릴스를 제작해 홍보했어요.
+                        그 결과 <strong>외국인 손님 예약</strong>까지 이어졌고,
+                        이 방식이 실제로 통한다는 확신이 생겼습니다.
+                    </p>
+                    <button class="review-btn" onclick="openReviewModal('review/F.jpeg')">후기 이미지 보기</button>
+                </div>
+
+                <!-- 복제 카드 6개 (무한 루프용) -->
+                <div class="review-card">
+                    <div class="review-card-header">
+                        <span class="review-location">충남</span>
+                        <span class="review-name">A 원장님</span>
+                    </div>
+                    <p class="review-content">
+                        오픈하자마자 지은 원장님이 릴스를 직접 만들어주셔서 바로 홍보했어요.
+                        그때부터 흐름이 잡혔고,
+                        지금은 꾸준히 <strong>월 매출 400만원</strong> 이상 나오고 있어요.
+                    </p>
+                    <div class="review-btn-group">
+                        <button class="review-btn" onclick="openReviewModal('review/a.jpeg')">후기 이미지 보기</button>
+                        <button class="review-btn" onclick="openReviewModal('review/a2.jpeg')">후기 이미지 보기</button>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-card-header">
+                        <span class="review-location">충남</span>
+                        <span class="review-name">B 원장님</span>
+                    </div>
+                    <p class="review-content">
+                        매출이 늘 <strong>350~400만원</strong>에서 정체돼 있었고
+                        뭘 어떻게 실행해야 할지 막막했어요.
+                        지은 원장님이 릴스 기획부터 편집, 광고 집행까지 직접 해주셨고,
+                        <strong>한 달 만에 매출이 2배</strong>로 올랐습니다.
+                    </p>
+                    <div class="review-btn-group">
+                        <button class="review-btn" onclick="openReviewModal('review/b.jpeg')">후기 이미지 보기</button>
+                        <button class="review-btn" onclick="openReviewModal('review/b2.jpeg')">후기 이미지 보기</button>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-card-header">
+                        <span class="review-location">서울</span>
+                        <span class="review-name">C 원장님</span>
+                    </div>
+                    <p class="review-content">
+                        샵 매출이 불안해서 유치원 보조 교사로 투잡을 하고 있었어요.
+                        그런데 매출이 오르는 걸 체감하면서
+                        이제는 <strong>샵에만 집중</strong>할 수 있게 됐어요.
+                    </p>
+                    <button class="review-btn" onclick="openReviewModal('review/C.jpeg')">후기 이미지 보기</button>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-card-header">
+                        <span class="review-location">서울</span>
+                        <span class="review-name">D 원장님</span>
+                    </div>
+                    <p class="review-content">
+                        1:1 컨설팅을 듣고 가격 조정과 홍보 방식을 바꿨습니다.
+                        그 결과 <strong>한 달 만에 매출이 300만원에서 500만원</strong>으로 증가했어요.
+                    </p>
+                    <div class="review-btn-group">
+                        <button class="review-btn" onclick="openReviewModal('review/d.jpeg')">후기 이미지 보기</button>
+                        <button class="review-btn" onclick="openReviewModal('review/d2.png')">후기 이미지 보기</button>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-card-header">
+                        <span class="review-location">경기도</span>
+                        <span class="review-name">E 원장님</span>
+                    </div>
+                    <p class="review-content">
+                        월 매출이 <strong>100만원</strong>도 안 돼서 헬스장 투잡 알바를 했었어요.
+                        1:1 컨설팅 때 만들어준 릴스 대본으로 광고를 돌렸고,
+                        매출이 <strong>230만원대</strong>까지 올라 투잡을 정리했습니다.
+                        지금은 샵 운영에만 전념하고 있어요.
+                    </p>
+                    <button class="review-btn" onclick="openReviewModal('review/e1.jpeg')">후기 이미지 보기</button>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-card-header">
+                        <span class="review-location">서울</span>
+                        <span class="review-name">F 원장님</span>
+                    </div>
+                    <p class="review-content">
+                        1:1 컨설팅을 받은 뒤
+                        지은 원장님이 잡아준 방향대로 릴스를 제작해 홍보했어요.
+                        그 결과 <strong>외국인 손님 예약</strong>까지 이어졌고,
+                        이 방식이 실제로 통한다는 확신이 생겼습니다.
+                    </p>
+                    <button class="review-btn" onclick="openReviewModal('review/F.jpeg')">후기 이미지 보기</button>
                 </div>
             </div>
+        </div>
+
+        <div class="container">
+            <p class="review-disclaimer">※ 모든 후기는 실제 카카오톡 대화 캡쳐이며, 개인정보 보호를 위해 일부만 공개합니다.</p>
 
             <div class="results-bottom">
                 <p>단 1회로 이 정도라면,<br><strong>8주 동안 같이 움직이면 결과는 달라질 수밖에 없습니다.</strong></p>
