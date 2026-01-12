@@ -4114,9 +4114,135 @@ p, li{
 }
 
 .curriculum-detail.open {
-    max-height: 2000px;
+    max-height: 3000px;
 }
 
+/* 커리큘럼 인트로 */
+.curriculum-intro {
+    text-align: center;
+    padding: 24px 20px;
+    margin-bottom: 20px;
+    background: var(--primary);
+    border-radius: 12px;
+}
+
+.curriculum-intro p {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.7;
+    margin: 0;
+}
+
+.curriculum-intro strong {
+    color: var(--white);
+}
+
+/* 시스템 빌드업 스타일 */
+.curriculum-phase.system-build {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 16px;
+}
+
+.curriculum-phase.system-build h4 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+}
+
+.build-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.build-col {
+    padding: 16px;
+    border-radius: 10px;
+}
+
+.build-col.participant {
+    background: #F0F4F8;
+}
+
+.build-col.operator {
+    background: rgba(31, 58, 95, 0.08);
+}
+
+.build-label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+}
+
+.build-col.participant .build-label {
+    color: var(--text-gray);
+}
+
+.build-col.operator .build-label {
+    color: var(--primary);
+}
+
+.build-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.build-col li {
+    font-size: 14px;
+    color: var(--text-dark);
+    padding: 6px 0;
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.5;
+}
+
+.build-col.participant li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--text-light);
+}
+
+.build-col.operator li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+    font-weight: 600;
+}
+
+/* 커리큘럼 요약 */
+.curriculum-summary {
+    text-align: center;
+    padding: 24px 20px;
+    margin: 20px 0;
+    background: var(--bg-main);
+    border-radius: 12px;
+    border: 1px dashed var(--border);
+}
+
+.curriculum-summary p {
+    font-size: 15px;
+    color: var(--text-gray);
+    line-height: 1.8;
+    margin: 0;
+}
+
+.curriculum-summary strong {
+    color: var(--primary);
+}
+
+/* 기존 스타일 유지 */
 .curriculum-phase {
     background: var(--bg-main);
     border: 1px solid var(--border);
@@ -4411,6 +4537,24 @@ p, li{
         width: auto;
         height: auto;
         padding: 6px 12px;
+    }
+
+    /* 시스템 빌드업 반응형 */
+    .build-row {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .build-col {
+        padding: 14px;
+    }
+
+    .curriculum-intro {
+        padding: 20px 16px;
+    }
+
+    .curriculum-intro p {
+        font-size: 15px;
     }
 }
 
