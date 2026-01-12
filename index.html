@@ -125,33 +125,9 @@
                         지금은 꾸준히 <strong>월 매출 400만원</strong> 이상 나오고 있어요.
                     </p>
 
-                    <!-- A 원장님 카카오톡 후기 -->
-                    <div class="review-gallery">
-                        <div class="review-card-list">
-                            <div class="review-card">
-                                <div class="review-card-image">
-                                    <img src="review/a.jpeg" alt="충남 A 원장님 카카오톡 후기 1" class="zoomable">
-                                </div>
-                                <div class="review-card-caption">
-                                    <span class="review-card-label">카카오톡 대화</span>
-                                    <p class="review-card-text">
-                                        "이번달은 350정도 벌었어요. 세달째 처음보다 매출 늘어서 좋아요"<br><br>
-                                        <strong>입술 릴스보고 입술도 예약 들어오고, 눈썹도 얻어걸리고, 속펌도 얻어걸리고. 개이득..</strong>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="review-card">
-                                <div class="review-card-image">
-                                    <img src="review/a2.jpeg" alt="충남 A 원장님 카카오톡 후기 2" class="zoomable">
-                                </div>
-                                <div class="review-card-caption">
-                                    <span class="review-card-label">카카오톡 대화</span>
-                                    <p class="review-card-text">
-                                        <strong>"이번달은 매출 400 나왔고용..."</strong>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="review-btn-group">
+                        <button class="review-btn" onclick="openReviewModal('review/a.jpeg')">💬 후기 이미지 1</button>
+                        <button class="review-btn" onclick="openReviewModal('review/a2.jpeg')">💬 후기 이미지 2</button>
                     </div>
                 </div>
                 <div class="story-card">
@@ -166,34 +142,9 @@
                         <strong>한 달 만에 매출이 2배</strong>로 올랐습니다.
                     </p>
 
-                    <!-- B 원장님 카카오톡 후기 -->
-                    <div class="review-gallery">
-                        <div class="review-card-list">
-                            <div class="review-card">
-                                <div class="review-card-image">
-                                    <img src="review/b.jpeg" alt="충남 B 원장님 카카오톡 후기 1" class="zoomable">
-                                </div>
-                                <div class="review-card-caption">
-                                    <span class="review-card-label">카카오톡 대화</span>
-                                    <p class="review-card-text">
-                                        "700 가까이?" → <strong>"눈썹 지짜 마니 했어요"</strong>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="review-card">
-                                <div class="review-card-image">
-                                    <img src="review/b2.jpeg" alt="충남 B 원장님 카카오톡 후기 2" class="zoomable">
-                                </div>
-                                <div class="review-card-caption">
-                                    <span class="review-card-label">카카오톡 대화</span>
-                                    <p class="review-card-text">
-                                        "눈썹 젤마니 했어요!!!!!"<br>
-                                        원래 10명 안되지 않았어요?? → <strong>"16명하구 2명 예약된상태"</strong><br><br>
-                                        <strong>릴스보고 팔로우는 여전히 오르는중</strong>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="review-btn-group">
+                        <button class="review-btn" onclick="openReviewModal('review/b.jpeg')">💬 후기 이미지 1</button>
+                        <button class="review-btn" onclick="openReviewModal('review/b2.jpeg')">💬 후기 이미지 2</button>
                     </div>
                 </div>
                 <div class="story-card">
@@ -207,23 +158,7 @@
                         이제는 <strong>샵에만 집중</strong>할 수 있게 됐어요.
                     </p>
 
-                    <!-- C 원장님 카카오톡 후기 -->
-                    <div class="review-gallery">
-                        <div class="review-card-list">
-                            <div class="review-card">
-                                <div class="review-card-image">
-                                    <img src="review/C.jpeg" alt="서울 C 원장님 카카오톡 후기" class="zoomable">
-                                </div>
-                                <div class="review-card-caption">
-                                    <span class="review-card-label">카카오톡 대화</span>
-                                    <p class="review-card-text">
-                                        "원장님이랑 만난 후에, 용기 더하기더하기 되어서 이번달까지만 일하기로 했습니다!"<br><br>
-                                        <strong>본인의 일로만 벌이가 안되는건 정말 말이안되는거에요. 선택과 집중!</strong>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <button class="review-btn" onclick="openReviewModal('review/C.jpeg')">💬 후기 이미지 보기</button>
                 </div>
                 <div class="story-card">
                     <div class="story-header">
@@ -234,6 +169,7 @@
                         1:1 컨설팅을 듣고 가격 조정과 홍보 방식을 바꿨습니다.<br>
                         그 결과 <strong>한 달 만에 매출이 300만원에서 500만원</strong>으로 증가했어요.
                     </p>
+                    <button class="review-btn" onclick="openReviewModal('review/d.jpeg')">💬 후기 이미지 보기</button>
                 </div>
                 <div class="story-card">
                     <div class="story-header">
@@ -1126,7 +1062,15 @@
             const imgModal = document.getElementById('imgModal');
             const imgModalImg = document.getElementById('imgModalImg');
 
-            // 이미지 클릭 시 모달 오픈
+            // 버튼으로 후기 이미지 모달 열기
+            window.openReviewModal = function(imageSrc) {
+                imgModal.classList.add('is-open');
+                imgModal.setAttribute('aria-hidden', 'false');
+                imgModalImg.src = imageSrc;
+                imgModalImg.alt = '후기 이미지';
+            };
+
+            // 이미지 클릭 시 모달 오픈 (zoomable 클래스)
             document.addEventListener('click', (e) => {
                 const img = e.target.closest('img.zoomable');
                 if (!img) return;

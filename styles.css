@@ -3180,3 +3180,37 @@ p, li{
 .img-modal__close:hover {
   background: rgba(255, 255, 255, 0.2);
 }
+
+/* ============================================
+   후기 이미지 버튼 스타일
+   ============================================ */
+.review-btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.review-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 16px;
+    background: var(--primary);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.review-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+.story-card .review-btn {
+    margin-top: 16px;
+}
