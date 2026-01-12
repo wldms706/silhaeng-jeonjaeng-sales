@@ -2861,3 +2861,134 @@ strong {
         font-size: 14px;
     }
 }
+
+/* =========================
+   MOBILE READABILITY + NAVY BOX FIX
+   모바일 가독성 + 네이비 박스 대비 개선
+========================= */
+
+/* 1) 기본 가독성(모바일에서 줄바꿈/행간/단어깨짐 개선) */
+:root{
+  --text-main:#0f172a;
+  --text-sub:#334155;
+
+  --navy-bg:#1F3556;       /* 추천 네이비 */
+  --navy-title:#FFFFFF;    /* 제목은 무조건 흰색 */
+  --navy-body:#E6EBF2;     /* 본문은 밝은 회백 */
+  --navy-accent:#9EC3FF;   /* 포인트 */
+}
+
+body{
+  color:var(--text-main);
+  line-height:1.7;
+  word-break:keep-all;          /* 한글 단어 중간 깨짐 방지 */
+  overflow-wrap:break-word;     /* 너무 긴 영문/URL만 줄바꿈 */
+}
+
+p, li{
+  line-height:1.75;
+}
+
+/* 모바일에서 문단 폭/줄 길이 최적화 */
+.section{
+  max-width:720px;
+  margin:0 auto;
+  padding:24px 16px;
+}
+
+/* 2) '줄바꿈이 안 예쁜' 문장을 모바일에서 자동으로 보기 좋게 */
+.mobile-copy{
+  font-size:16px;
+  color:var(--text-sub);
+  letter-spacing:-0.2px;
+}
+
+@media (max-width: 480px){
+  .mobile-copy{
+    font-size:16px;
+    line-height:1.9;           /* 모바일은 행간 더 넉넉하게 */
+  }
+
+  /* 문단 사이 여백 */
+  .mobile-copy p{
+    margin:12px 0;
+  }
+
+  /* 강조 문장(한 줄씩 눈에 박히게) */
+  .mobile-copy .em{
+    display:block;
+    font-weight:700;
+    color:var(--text-main);
+    margin-top:6px;
+  }
+}
+
+/* 3) 네이비 박스(가독성/대비 해결) */
+.navy-card{
+  background:var(--navy-bg);
+  color:var(--navy-body);
+  border-radius:16px;
+  padding:20px 18px;
+  box-shadow:0 8px 24px rgba(15, 23, 42, 0.10);
+}
+
+.navy-card .badge{
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(255,255,255,0.14);
+  color:var(--navy-title);
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:10px;
+}
+
+.navy-card h3{
+  color:var(--navy-title);
+  font-size:20px;
+  line-height:1.25;
+  margin:6px 0 12px;
+  letter-spacing:-0.3px;
+}
+
+.navy-card ul{
+  margin:0;
+  padding-left:18px;
+}
+
+.navy-card li{
+  color:var(--navy-body);
+  margin:8px 0;
+}
+
+.navy-card .accent{
+  color:var(--navy-accent);
+  font-weight:800;
+}
+
+/* 4) 화살표/체크 라인(모바일에서 더 읽기 좋게) */
+.flow-line{
+  font-weight:800;
+  letter-spacing:-0.3px;
+}
+
+.flow-line .arrow{
+  opacity:0.9;
+}
+
+.checkline{
+  margin-top:12px;
+  padding-top:12px;
+  border-top:1px solid rgba(255,255,255,0.18);
+  color:var(--navy-title);
+  font-weight:900;
+}
+
+@media (max-width: 480px){
+  .navy-card{
+    padding:18px 16px;
+  }
+  .navy-card h3{
+    font-size:18px;
+  }
+}
