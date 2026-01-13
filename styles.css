@@ -12,41 +12,38 @@
 }
 
 :root {
-    /* ============================================
-       NEW COLOR SYSTEM - Premium Consulting Tone
-       ============================================ */
+    /* Deep Navy Theme - 전문가/컨설턴트 톤 */
+    --primary: #1F3A5F;
+    --primary-light: #3B6EA8;
+    --primary-dark: #152A45;
 
-    /* Background - Deep Navy */
-    --bg-main: #0F2A44;
-    --bg-card: #142F4A;
-    --bg-section-alt: #0D2339;
-
-    /* Text Colors */
-    --text-body: #E6EDF3;          /* 기본 텍스트 - 밝은 회백색 */
-    --text-sub: #9FB3C8;           /* 서브 텍스트 - 연한 블루그레이 */
-    --text-highlight: #FFFFFF;     /* 강조 텍스트 - 화이트 (최소 사용) */
-
-    /* CTA Only - Red */
-    --cta-red: #E53935;
-    --cta-red-hover: #C62828;
+    /* Background */
+    --bg-main: #F7F9FC;
+    --bg-card: #FFFFFF;
 
     /* Border */
-    --border: rgba(255, 255, 255, 0.12);
-    --border-hover: rgba(255, 255, 255, 0.25);
+    --border: #E5EAF2;
+    --border-hover: #C7D2E1;
+
+    /* Text Colors */
+    --text-dark: #111827;
+    --text-gray: #4B5563;
+    --text-light: #6B7280;
+    --text-muted: #9CA3AF;
+
+    /* Neutral */
+    --white: #FFFFFF;
+
+    /* Urgent/Warning - 긴급 강조용 */
+    --urgent-red: #DC2626;
+    --urgent-red-hover: #B91C1C;
 
     /* Legacy aliases for compatibility */
-    --primary: #0F2A44;
-    --primary-light: #1A3A5C;
-    --primary-dark: #0A1F33;
-    --primary-blue: #0F2A44;
-    --sub-blue: #9FB3C8;
-    --white: #FFFFFF;
-    --text-dark: #E6EDF3;
-    --text-gray: #9FB3C8;
-    --text-light: #9FB3C8;
-    --text-muted: rgba(159, 179, 200, 0.7);
-    --urgent-red: #E53935;
-    --urgent-red-hover: #C62828;
+    --primary-blue: var(--primary);
+    --sub-blue: var(--primary-light);
+    --light-blue-bg: var(--bg-main);
+    --gray-light: var(--border);
+    --gray-border: var(--border);
 
     --font-main: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
 
@@ -60,8 +57,8 @@ html {
 
 body {
     font-family: var(--font-main);
-    background-color: var(--bg-main);
-    color: var(--text-body);
+    background-color: var(--white);
+    color: var(--text-dark);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
 }
@@ -79,8 +76,7 @@ h1, h2, h3 {
 }
 
 .highlight {
-    color: var(--text-highlight);
-    font-weight: 700;
+    color: var(--primary-blue);
 }
 
 strong {
@@ -122,7 +118,7 @@ strong {
 }
 
 /* ============================================
-   Hero Section - Premium Deep Navy
+   Hero Section - 차분한 전문가 톤
    ============================================ */
 .hero {
     min-height: 100vh;
@@ -130,8 +126,8 @@ strong {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: var(--bg-main);
-    color: var(--text-body);
+    background: var(--primary);
+    color: var(--white);
     text-align: center;
     padding: 80px 24px;
     position: relative;
@@ -146,9 +142,9 @@ strong {
     font-size: 12px;
     font-weight: 600;
     letter-spacing: 2px;
-    color: var(--text-body);
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--white);
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
     padding: 10px 24px;
     border-radius: 4px;
     margin-bottom: 36px;
@@ -161,12 +157,11 @@ strong {
     line-height: 1.3;
     margin-bottom: 28px;
     letter-spacing: -0.5px;
-    color: var(--text-highlight);
     animation: fadeInUp 0.8s ease 0.2s backwards;
 }
 
 .hero-headline .highlight {
-    color: var(--text-highlight);
+    color: #A8C5E2;
     position: relative;
 }
 
@@ -176,7 +171,7 @@ strong {
 
 .hero-sub {
     font-size: 17px;
-    color: var(--text-sub);
+    color: rgba(255, 255, 255, 0.7);
     margin-bottom: 48px;
     line-height: 1.7;
     animation: fadeInUp 0.8s ease 0.4s backwards;
@@ -184,30 +179,29 @@ strong {
 
 .hero-note {
     font-size: 13px;
-    color: var(--text-sub);
-    opacity: 0.7;
+    color: rgba(255, 255, 255, 0.5);
     margin-top: 20px;
     animation: fadeInUp 0.8s ease 0.8s backwards;
 }
 
-/* CTA Buttons - Red Only */
+/* CTA Buttons - 차분한 스타일 */
 .cta-button {
     display: inline-block;
-    background: var(--cta-red);
-    color: var(--text-highlight);
+    background: var(--white);
+    color: var(--primary);
     font-size: 15px;
     font-weight: 600;
     text-decoration: none;
     padding: 16px 40px;
-    border-radius: 6px;
+    border-radius: 4px;
     transition: all 0.2s ease;
     animation: fadeInUp 0.8s ease 0.6s backwards;
 }
 
 .cta-button:hover {
-    background: var(--cta-red-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(229, 57, 53, 0.35);
+    background: var(--bg-main);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(31, 58, 95, 0.15);
 }
 
 .cta-large {
@@ -246,7 +240,7 @@ strong {
     transform: translateX(-50%);
     width: 4px;
     height: 8px;
-    background: var(--text-sub);
+    background: var(--sub-blue);
     border-radius: 2px;
     animation: scrollDown 1.5s infinite;
 }
@@ -261,7 +255,7 @@ strong {
 
 .video-gallery-desc {
     text-align: center;
-    color: var(--text-sub);
+    color: var(--text-gray);
     font-size: 15px;
     line-height: 1.8;
     margin-bottom: 40px;
@@ -271,7 +265,7 @@ strong {
     display: block;
     margin-top: 8px;
     font-size: 17px;
-    color: var(--text-highlight);
+    color: var(--primary);
     font-weight: 600;
 }
 
@@ -298,7 +292,7 @@ strong {
     aspect-ratio: 9 / 16;
     border-radius: 16px;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    border: 1px solid var(--border);
     background: #000;
 }
 
@@ -330,7 +324,7 @@ strong {
 }
 
 /* ============================================
-   Problem Section - Deep Navy Card Style
+   Problem Section - 깔끔한 카드 스타일
    ============================================ */
 .problem {
     background: var(--bg-main);
@@ -343,36 +337,36 @@ strong {
 }
 
 .problem-item {
-    background: var(--bg-card);
+    background: var(--white);
     padding: 32px 28px;
     border-radius: 8px;
     position: relative;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--border);
     transition: border-color 0.2s ease;
 }
 
 .problem-item:hover {
-    border-color: rgba(255, 255, 255, 0.18);
+    border-color: var(--border-hover);
 }
 
 .problem-icon {
     font-size: 40px;
-    color: var(--text-sub);
+    color: var(--primary);
     font-family: Georgia, serif;
     line-height: 1;
     margin-bottom: 16px;
     display: block;
-    opacity: 0.4;
+    opacity: 0.2;
 }
 
 .problem-item p {
     font-size: 16px;
-    color: var(--text-sub);
+    color: var(--text-gray);
     line-height: 1.7;
 }
 
 .problem-item strong {
-    color: var(--text-body);
+    color: var(--text-dark);
     font-weight: 600;
     display: block;
     margin-top: 6px;
@@ -380,23 +374,23 @@ strong {
 }
 
 /* ============================================
-   Solution Section - Deep Navy Unified
+   Solution Section - 차분한 다크 톤
    ============================================ */
 .solution {
-    background: var(--bg-main);
-    color: var(--text-body);
+    background: var(--primary);
+    color: var(--white);
 }
 
 .solution .section-tag {
-    color: var(--text-sub);
+    color: rgba(255, 255, 255, 0.5);
 }
 
 .solution .section-title {
-    color: var(--text-highlight);
+    color: var(--white);
 }
 
 .solution .section-title .highlight {
-    color: var(--text-highlight);
+    color: #A8C5E2;
 }
 
 .solution-grid {
@@ -410,7 +404,7 @@ strong {
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 8px;
     transition: border-color 0.2s ease;
-    background: var(--bg-card);
+    background: transparent;
 }
 
 .solution-card:hover {
@@ -420,7 +414,7 @@ strong {
 .solution-number {
     font-size: 12px;
     font-weight: 600;
-    color: var(--text-sub);
+    color: rgba(255, 255, 255, 0.5);
     margin-bottom: 20px;
     letter-spacing: 2px;
 }
@@ -429,24 +423,23 @@ strong {
     font-size: 20px;
     margin-bottom: 16px;
     font-weight: 600;
-    color: var(--text-body);
 }
 
 .solution-card p {
     font-size: 15px;
-    color: var(--text-sub);
+    color: rgba(255, 255, 255, 0.6);
     line-height: 1.7;
 }
 
 .solution-card strong {
-    color: var(--text-body);
+    color: var(--white);
 }
 
 /* ============================================
-   Philosophy Section - Deep Navy Style
+   Philosophy Section - 선언문 스타일
    ============================================ */
 .philosophy {
-    background: var(--bg-section-alt);
+    background: var(--bg-main);
     padding: 160px 24px;
 }
 
@@ -458,7 +451,7 @@ strong {
 
 .philosophy-line {
     font-size: 19px;
-    color: var(--text-sub);
+    color: var(--text-gray);
     line-height: 1.6;
     margin-bottom: 12px;
     letter-spacing: -0.2px;
@@ -467,7 +460,7 @@ strong {
 .philosophy-emphasis {
     font-size: 22px;
     font-weight: 600;
-    color: var(--text-body);
+    color: var(--text-dark);
     margin-top: 20px;
     margin-bottom: 0;
 }
@@ -475,30 +468,30 @@ strong {
 .philosophy-divider {
     width: 40px;
     height: 1px;
-    background: rgba(255, 255, 255, 0.15);
+    background: var(--border);
     margin: 48px auto;
 }
 
 .philosophy-final {
     font-size: 21px;
     font-weight: 600;
-    color: var(--text-highlight);
+    color: var(--primary);
     margin-bottom: 0;
 }
 
 /* ============================================
-   Results Section - Deep Navy Card Style
+   Results Section - 클린 카드 스타일
    ============================================ */
 .results {
-    background: var(--bg-main);
+    background: var(--white);
 }
 
 .results-note-box {
     display: flex;
     align-items: flex-start;
     gap: 16px;
-    background: var(--bg-card);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--bg-main);
+    border: 1px solid var(--border);
     border-radius: 6px;
     padding: 20px 24px;
     margin-bottom: 36px;
@@ -509,9 +502,9 @@ strong {
     font-size: 10px;
     font-weight: 600;
     letter-spacing: 1px;
-    color: var(--text-body);
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--primary);
+    background: var(--white);
+    border: 1px solid var(--border);
     padding: 4px 10px;
     border-radius: 3px;
     margin-top: 2px;
@@ -519,13 +512,13 @@ strong {
 
 .results-note-box p {
     font-size: 14px;
-    color: var(--text-sub);
+    color: var(--text-gray);
     line-height: 1.8;
     margin: 0;
 }
 
 .results-note-box strong {
-    color: var(--text-body);
+    color: var(--text-dark);
     font-weight: 600;
 }
 
@@ -536,21 +529,21 @@ strong {
 }
 
 .story-card {
-    background: var(--bg-card);
+    background: var(--white);
     padding: 28px;
     border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--border);
     transition: border-color 0.2s ease;
 }
 
 .story-card:hover {
-    border-color: rgba(255, 255, 255, 0.18);
+    border-color: var(--border-hover);
 }
 
 .story-card-featured {
     grid-column: 1 / -1;
-    background: var(--bg-card);
-    border-color: rgba(255, 255, 255, 0.12);
+    background: var(--white);
+    border-color: var(--border);
 }
 
 .story-header {
@@ -563,42 +556,42 @@ strong {
 .story-location {
     display: inline-block;
     background: transparent;
-    color: var(--text-sub);
+    color: var(--primary);
     font-size: 11px;
     font-weight: 600;
     padding: 3px 8px;
     border-radius: 3px;
-    border: 1px solid var(--text-sub);
+    border: 1px solid var(--primary);
 }
 
 .story-name {
     font-size: 16px;
     font-weight: 600;
-    color: var(--text-body);
+    color: var(--text-dark);
 }
 
 .story-content {
     font-size: 15px;
-    color: var(--text-sub);
+    color: var(--text-gray);
     line-height: 1.8;
 }
 
 .story-content strong {
-    color: var(--text-body);
+    color: var(--primary);
     font-weight: 600;
 }
 
 .results-note {
     text-align: center;
     font-size: 13px;
-    color: var(--text-sub);
+    color: var(--text-light);
     margin-top: 40px;
 }
 
 .results-disclaimer {
     margin-top: 48px;
     padding: 20px;
-    background: var(--bg-card);
+    background: var(--bg-main);
     border-radius: 6px;
     text-align: center;
 }
@@ -610,7 +603,7 @@ strong {
 }
 
 /* ============================================
-   Profile Section - Deep Navy Style
+   Profile Section - 클린 프로페셔널 스타일
    ============================================ */
 .profile {
     background: var(--bg-main);
@@ -619,7 +612,7 @@ strong {
 .profile-subtitle {
     font-size: 0.5em;
     font-weight: 500;
-    color: var(--text-sub);
+    color: var(--text-light);
     display: block;
     margin-top: 8px;
 }
@@ -638,7 +631,7 @@ strong {
 .profile-image img {
     width: 100%;
     border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    border: 1px solid var(--border);
 }
 
 .profile-text {
@@ -647,13 +640,13 @@ strong {
 
 .profile-intro {
     font-size: 18px;
-    color: var(--text-body);
+    color: var(--text-dark);
     line-height: 1.8;
     margin-bottom: 28px;
 }
 
 .profile-intro strong {
-    color: var(--text-highlight);
+    color: var(--primary);
 }
 
 .profile-career {
@@ -661,14 +654,14 @@ strong {
     padding: 0;
     margin: 0 0 28px 0;
     padding: 20px 24px;
-    background: var(--bg-card);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--white);
+    border: 1px solid var(--border);
     border-radius: 6px;
 }
 
 .profile-career li {
     font-size: 14px;
-    color: var(--text-sub);
+    color: var(--text-gray);
     line-height: 1.7;
     padding-left: 16px;
     position: relative;
@@ -683,79 +676,79 @@ strong {
     content: '·';
     position: absolute;
     left: 0;
-    color: var(--text-body);
+    color: var(--primary);
     font-weight: 700;
 }
 
 .profile-career li strong {
-    color: var(--text-body);
+    color: var(--primary);
     font-weight: 600;
 }
 
 .profile-experience {
     font-size: 16px;
-    color: var(--text-sub);
+    color: var(--text-gray);
     line-height: 1.8;
     margin-bottom: 28px;
 }
 
 .profile-experience strong {
-    color: var(--text-body);
+    color: var(--primary);
     font-weight: 600;
 }
 
 .profile-now {
     margin-bottom: 28px;
     padding-left: 20px;
-    border-left: 2px solid var(--text-sub);
+    border-left: 2px solid var(--primary);
 }
 
 .profile-now p {
     font-size: 16px;
-    color: var(--text-sub);
+    color: var(--text-gray);
     line-height: 1.8;
 }
 
 .profile-now strong {
-    color: var(--text-body);
+    color: var(--text-dark);
     font-weight: 600;
 }
 
 .profile-closing {
     font-size: 17px;
-    color: var(--text-body);
+    color: var(--text-dark);
     line-height: 1.7;
 }
 
 .profile-closing strong {
-    color: var(--text-highlight);
+    color: var(--primary);
     font-weight: 600;
 }
 
 /* ============================================
-   Package Section - Deep Navy Style
+   Package Section - 클린 실행 리스트
    ============================================ */
 .package {
-    background: var(--bg-main);
+    background: var(--white);
 }
 
 .package-intro {
     text-align: center;
     margin-bottom: 48px;
     padding: 36px 32px;
-    background: var(--bg-card);
+    background: var(--bg-main);
     border-radius: 6px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--border);
 }
 
 .package-intro p {
     font-size: 18px;
-    color: var(--text-sub);
+    color: var(--text-gray);
     line-height: 1.8;
 }
 
 .package-intro strong {
-    color: var(--text-body);
+    color: var(--primary);
     font-size: 20px;
     font-weight: 600;
 }
@@ -767,55 +760,55 @@ strong {
 }
 
 .execution-item {
-    background: var(--bg-card);
+    background: var(--bg-main);
     padding: 28px;
     border-radius: 6px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--border);
     transition: border-color 0.2s ease;
 }
 
 .execution-item:hover {
-    border-color: rgba(255, 255, 255, 0.18);
+    border-color: var(--border-hover);
 }
 
 .execution-highlight {
-    border-left: 3px solid var(--text-sub);
-    background: var(--bg-card);
+    border-left: 3px solid var(--primary);
+    background: var(--bg-main);
 }
 
 .execution-bonus {
-    border: 1px solid var(--text-sub);
-    background: var(--bg-card);
+    border: 1px solid var(--primary);
+    background: var(--bg-main);
 }
 
 .execution-badge {
     display: inline-block;
     background: transparent;
-    color: var(--text-body);
+    color: var(--primary);
     font-size: 11px;
     font-weight: 600;
     padding: 4px 10px;
     border-radius: 3px;
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    border: 1px solid var(--primary);
     margin-bottom: 12px;
 }
 
 .execution-badge.bonus {
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--text-body);
+    background: var(--primary);
+    color: var(--white);
     border: none;
 }
 
 .execution-item h3 {
     font-size: 17px;
-    color: var(--text-body);
+    color: var(--text-dark);
     margin-bottom: 14px;
     line-height: 1.5;
     font-weight: 600;
 }
 
 .execution-item h3 strong {
-    color: var(--text-highlight);
+    color: var(--primary);
 }
 
 .execution-item ul {
@@ -826,7 +819,7 @@ strong {
 
 .execution-item li {
     font-size: 14px;
-    color: var(--text-sub);
+    color: var(--text-gray);
     line-height: 1.7;
     padding-left: 16px;
     position: relative;
@@ -841,25 +834,24 @@ strong {
     content: '·';
     position: absolute;
     left: 0;
-    color: var(--text-body);
+    color: var(--primary);
     font-weight: 700;
 }
 
 .execution-item li strong {
-    color: var(--text-body);
+    color: var(--primary);
     font-weight: 600;
 }
 
-/* Execution Highlight (다크 카드) - Deep Navy Style */
+/* Execution Highlight (다크 카드) - 가독성 최적화 */
 .execution-item.execution-highlight {
-    background: var(--bg-card);
+    background: #2D4A6F; /* 10% 더 밝은 네이비 */
     border: none;
-    border-left: 3px solid var(--text-sub);
-    color: var(--text-body);
+    color: var(--white);
 }
 
 .execution-item.execution-highlight h3 {
-    color: var(--text-body);
+    color: #FFFFFF;
     font-size: 18px;
 }
 
@@ -868,50 +860,50 @@ strong {
 }
 
 .execution-item.execution-highlight li {
-    color: var(--text-sub);
+    color: rgba(255, 255, 255, 0.88);
     font-size: 15px;
     line-height: 1.8;
 }
 
 .execution-item.execution-highlight li::before {
-    color: var(--text-body);
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .execution-item.execution-highlight li strong {
-    color: var(--text-body);
+    color: #FFFFFF;
 }
 
 .execution-badge.highlight {
-    background: rgba(255, 255, 255, 0.08);
-    color: var(--text-body);
+    background: rgba(255, 255, 255, 0.18);
+    color: #FFFFFF;
     font-weight: 600;
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.35);
 }
 
 .execution-subtitle {
     font-size: 14px;
-    color: var(--text-sub);
+    color: rgba(255, 255, 255, 0.78);
     margin-bottom: 14px;
 }
 
 .execution-desc {
     font-size: 15px;
-    color: var(--text-sub);
+    color: rgba(255, 255, 255, 0.88);
     line-height: 1.8;
     margin-bottom: 16px;
 }
 
 .execution-desc strong {
-    color: var(--text-body);
+    color: #FFFFFF;
     font-weight: 600;
 }
 
 .execution-tagline {
     font-size: 15px;
     font-weight: 600;
-    color: var(--text-body);
+    color: #FFFFFF;
     padding: 12px 18px;
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.12);
     border-radius: 4px;
     display: inline-block;
 }
@@ -920,15 +912,15 @@ strong {
     display: inline-block;
     font-size: 13px;
     font-weight: 600;
-    color: var(--text-body);
-    background: rgba(255, 255, 255, 0.1);
+    color: var(--primary);
+    background: var(--white);
     padding: 6px 14px;
     border-radius: 3px;
     margin-bottom: 14px;
 }
 
 /* ============================================
-   Target Fit Section - Deep Navy Style
+   Target Fit Section - 타겟 고객 & 기대치 정렬
    ============================================ */
 .target-fit {
     background: var(--bg-main);
@@ -942,7 +934,7 @@ strong {
 
 .target-intro p {
     font-size: 17px;
-    color: var(--text-sub);
+    color: var(--text-gray);
     line-height: 1.8;
     margin-bottom: 12px;
 }
@@ -959,35 +951,35 @@ strong {
 }
 
 .target-card {
-    background: var(--bg-card);
+    background: var(--white);
     border-radius: 8px;
     padding: 32px 28px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--border);
 }
 
 .target-good {
-    border-left: 3px solid var(--text-body);
+    border-left: 3px solid var(--primary);
 }
 
 .target-mismatch {
-    border-left: 3px solid rgba(255, 255, 255, 0.25);
+    border-left: 3px solid var(--border-hover);
 }
 
 .target-label {
     font-size: 14px;
     font-weight: 600;
-    color: var(--text-body);
+    color: var(--text-dark);
     margin-bottom: 20px;
     padding-bottom: 12px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid var(--border);
 }
 
 .target-good .target-label {
-    color: var(--text-body);
+    color: var(--primary);
 }
 
 .target-mismatch .target-label {
-    color: var(--text-sub);
+    color: var(--text-light);
 }
 
 .target-list {
@@ -998,7 +990,7 @@ strong {
 
 .target-list li {
     font-size: 15px;
-    color: var(--text-sub);
+    color: var(--text-gray);
     line-height: 1.7;
     padding-left: 24px;
     position: relative;
@@ -1013,7 +1005,7 @@ strong {
     content: '○';
     position: absolute;
     left: 0;
-    color: var(--text-body);
+    color: var(--primary);
     font-size: 10px;
     top: 4px;
 }
@@ -1022,7 +1014,7 @@ strong {
     content: '–';
     position: absolute;
     left: 2px;
-    color: var(--text-sub);
+    color: var(--text-muted);
     font-size: 14px;
 }
 
@@ -1031,24 +1023,24 @@ strong {
     margin: 0 auto;
     text-align: center;
     padding: 32px;
-    background: var(--bg-card);
+    background: var(--white);
     border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--border);
 }
 
 .target-closing p {
     font-size: 17px;
-    color: var(--text-sub);
+    color: var(--text-gray);
     line-height: 1.8;
 }
 
 .target-closing strong {
-    color: var(--text-body);
+    color: var(--primary);
     font-weight: 600;
 }
 
 /* ============================================
-   Process Section - Deep Navy Style
+   Process Section - 클린 타임라인
    ============================================ */
 .process {
     background: var(--bg-main);
@@ -1068,7 +1060,7 @@ strong {
     left: 12%;
     right: 12%;
     height: 1px;
-    background: rgba(255, 255, 255, 0.15);
+    background: var(--border);
 }
 
 .process-item {
@@ -1078,13 +1070,13 @@ strong {
 
 .process-week {
     display: inline-block;
-    background: var(--bg-card);
-    color: var(--text-body);
+    background: var(--white);
+    color: var(--primary);
     font-size: 11px;
     font-weight: 600;
     padding: 6px 14px;
     border-radius: 3px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid var(--primary);
     margin-bottom: 20px;
     position: relative;
     z-index: 1;
@@ -1093,21 +1085,21 @@ strong {
 .process-item h3 {
     font-size: 16px;
     margin-bottom: 10px;
-    color: var(--text-body);
+    color: var(--text-dark);
     font-weight: 600;
 }
 
 .process-item p {
     font-size: 13px;
-    color: var(--text-sub);
+    color: var(--text-gray);
     line-height: 1.6;
 }
 
 /* ============================================
-   FAQ Section - Deep Navy Style
+   FAQ Section - 클린 스타일
    ============================================ */
 .faq {
-    background: var(--bg-main);
+    background: var(--white);
 }
 
 .faq-list {
@@ -1117,40 +1109,40 @@ strong {
 
 .faq-item {
     padding: 28px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid var(--border);
 }
 
 .faq-question {
     font-size: 16px;
     margin-bottom: 14px;
-    color: var(--text-body);
+    color: var(--text-dark);
     font-weight: 600;
 }
 
 .faq-answer {
     font-size: 15px;
-    color: var(--text-sub);
+    color: var(--text-gray);
     line-height: 1.7;
 }
 
 .faq-answer strong {
-    color: var(--text-body);
+    color: var(--primary);
 }
 
 /* ============================================
-   Pricing Section - Deep Navy Style
+   Pricing Section - 가격 및 모집
    ============================================ */
 .pricing {
-    background: var(--bg-main);
-    color: var(--text-body);
+    background: var(--primary);
+    color: var(--white);
 }
 
 .pricing .section-tag {
-    color: var(--text-sub);
+    color: rgba(255, 255, 255, 0.5);
 }
 
 .pricing .section-title {
-    color: var(--text-highlight);
+    color: var(--white);
 }
 
 .pricing-main {
@@ -1160,8 +1152,8 @@ strong {
 }
 
 .pricing-highlight {
-    background: var(--bg-card);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 8px;
     padding: 40px 32px;
     margin-bottom: 32px;
@@ -1176,20 +1168,18 @@ strong {
     font-weight: 700;
     line-height: 1;
     letter-spacing: -2px;
-    color: var(--text-highlight);
 }
 
 .price-unit {
     font-size: 28px;
     font-weight: 600;
     margin-left: 4px;
-    color: var(--text-highlight);
 }
 
 .price-vat {
     display: block;
     font-size: 14px;
-    color: var(--text-sub);
+    color: rgba(255, 255, 255, 0.5);
     margin-top: 8px;
 }
 
@@ -1202,11 +1192,11 @@ strong {
 
 .pricing-meta span {
     font-size: 15px;
-    color: var(--text-sub);
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .pricing-meta strong {
-    color: var(--text-body);
+    color: var(--white);
     font-weight: 600;
 }
 
@@ -1216,27 +1206,27 @@ strong {
 
 .pricing-description p {
     font-size: 16px;
-    color: var(--text-sub);
+    color: rgba(255, 255, 255, 0.8);
     line-height: 1.8;
     margin-bottom: 16px;
 }
 
 .pricing-description strong {
-    color: var(--text-body);
+    color: var(--white);
     font-weight: 600;
 }
 
 .pricing-reason {
     margin-top: 24px;
     font-size: 17px !important;
-    color: var(--text-body) !important;
+    color: var(--white) !important;
 }
 
 .pricing-first-batch {
     max-width: 480px;
     margin: 0 auto 48px;
-    background: var(--bg-card);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 8px;
     padding: 32px;
     text-align: center;
@@ -1244,8 +1234,8 @@ strong {
 
 .batch-badge {
     display: inline-block;
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--text-body);
+    background: var(--white);
+    color: var(--primary);
     font-size: 12px;
     font-weight: 600;
     padding: 6px 16px;
@@ -1257,7 +1247,6 @@ strong {
     font-size: 18px;
     font-weight: 600;
     margin-bottom: 16px;
-    color: var(--text-body);
 }
 
 .batch-list {
@@ -1270,7 +1259,7 @@ strong {
 
 .batch-list li {
     font-size: 15px;
-    color: var(--text-sub);
+    color: rgba(255, 255, 255, 0.9);
     line-height: 1.8;
     padding-left: 20px;
     position: relative;
@@ -1280,40 +1269,37 @@ strong {
     content: '·';
     position: absolute;
     left: 0;
-    color: var(--text-sub);
+    color: rgba(255, 255, 255, 0.5);
 }
 
 .batch-note {
     font-size: 16px;
     line-height: 1.7;
     margin-bottom: 16px;
-    color: var(--text-sub);
 }
 
 .batch-note strong {
-    color: var(--text-body);
+    color: var(--white);
 }
 
 .batch-warning {
     font-size: 13px;
-    color: var(--text-sub);
-    opacity: 0.7;
+    color: rgba(255, 255, 255, 0.5);
     line-height: 1.6;
 }
 
 .pricing-benefits {
     max-width: 480px;
     margin: 0 auto 48px;
-    background: var(--bg-card);
+    background: var(--white);
     border-radius: 8px;
     padding: 32px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .benefits-title {
     font-size: 14px;
     font-weight: 600;
-    color: var(--text-body);
+    color: var(--primary);
     text-align: center;
     margin-bottom: 20px;
     letter-spacing: 1px;
@@ -1330,7 +1316,7 @@ strong {
 
 .benefits-list li {
     font-size: 14px;
-    color: var(--text-sub);
+    color: var(--text-gray);
     line-height: 1.6;
     padding-left: 20px;
     position: relative;
@@ -1340,7 +1326,7 @@ strong {
     content: '✓';
     position: absolute;
     left: 0;
-    color: var(--text-body);
+    color: var(--primary);
     font-weight: 600;
 }
 
@@ -1349,31 +1335,31 @@ strong {
 }
 
 .cta-pricing {
-    background: var(--cta-red);
-    color: var(--text-highlight);
+    background: var(--white);
+    color: var(--primary);
     font-size: 18px;
     padding: 20px 56px;
     animation: none;
 }
 
 .cta-pricing:hover {
-    background: var(--cta-red-hover);
+    background: var(--bg-main);
 }
 
 .pricing-urgency {
     font-size: 14px;
     font-weight: 600;
-    color: var(--text-body);
+    color: var(--white);
     margin-top: 16px;
     letter-spacing: 0.5px;
 }
 
 /* ============================================
-   Final CTA Section - Deep Navy Style
+   Final CTA Section - 차분한 스타일
    ============================================ */
 .final-cta {
-    background: var(--bg-section-alt);
-    color: var(--text-body);
+    background: var(--primary);
+    color: var(--white);
     padding: 100px 24px;
 }
 
@@ -1384,7 +1370,7 @@ strong {
     padding: 56px 40px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 8px;
-    background: var(--bg-card);
+    background: transparent;
 }
 
 .final-tag {
@@ -1392,9 +1378,9 @@ strong {
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 2px;
-    color: var(--text-body);
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--white);
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
     padding: 8px 20px;
     border-radius: 3px;
     margin-bottom: 28px;
@@ -1404,18 +1390,17 @@ strong {
     font-size: clamp(24px, 5vw, 32px);
     margin-bottom: 20px;
     font-weight: 600;
-    color: var(--text-highlight);
 }
 
 .final-sub {
     font-size: 15px;
-    color: var(--text-sub);
+    color: rgba(255, 255, 255, 0.6);
     margin-bottom: 32px;
     line-height: 1.7;
 }
 
 .final-sub strong {
-    color: var(--text-body);
+    color: var(--white);
 }
 
 .final-benefits {
@@ -1428,28 +1413,26 @@ strong {
 
 .final-benefits span {
     font-size: 13px;
-    color: var(--text-sub);
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .final-note {
     font-size: 13px;
-    color: var(--text-sub);
-    opacity: 0.6;
+    color: rgba(255, 255, 255, 0.4);
     margin-top: 20px;
 }
 
 .urgency {
-    color: var(--text-body);
+    color: var(--white);
     font-weight: 600;
 }
 
 /* ============================================
-   Footer - Deep Navy Style
+   Footer - 클린 스타일
    ============================================ */
 .footer {
-    background: var(--bg-section-alt);
-    color: var(--text-sub);
-    opacity: 0.7;
+    background: var(--primary-dark);
+    color: rgba(255, 255, 255, 0.4);
     padding: 36px 24px;
     text-align: center;
 }
@@ -1463,14 +1446,14 @@ strong {
 }
 
 .footer-links a {
-    color: var(--text-sub);
+    color: rgba(255,255,255,0.5);
     text-decoration: none;
     margin: 0 12px;
     transition: color 0.3s ease;
 }
 
 .footer-links a:hover {
-    color: var(--text-body);
+    color: var(--sub-blue);
 }
 
 /* ============================================
@@ -3592,13 +3575,13 @@ p, li{
     font-size: clamp(32px, 7vw, 48px);
     font-weight: 700;
     line-height: 1.35;
-    color: var(--text-highlight);
+    color: var(--text-dark);
     margin-bottom: 40px;
     letter-spacing: -0.5px;
 }
 
 .section-title-v2 .highlight {
-    color: var(--text-highlight);
+    color: var(--primary);
 }
 
 /* 1. 문제 인식 v2 */
@@ -3614,48 +3597,48 @@ p, li{
 
 .problem-line {
     font-size: 20px;
-    color: var(--text-sub);
+    color: var(--text-gray);
     line-height: 1.8;
     margin-bottom: 16px;
     text-align: center;
 }
 
 .problem-line strong {
-    color: var(--text-body);
+    color: var(--text-dark);
 }
 
 .problem-closing {
     text-align: center;
     font-size: 18px;
-    color: var(--text-sub);
+    color: var(--text-gray);
     line-height: 1.75;
     max-width: 500px;
     margin: 0 auto;
     padding-top: 32px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid var(--border);
 }
 
 .problem-closing strong {
-    color: var(--text-body);
+    color: var(--primary);
 }
 
 /* 2. 왜 이 프로그램인가 v2 */
 .why-v2 {
-    background: var(--bg-section-alt);
-    color: var(--text-body);
+    background: var(--primary);
+    color: var(--white);
     padding: 100px 24px;
 }
 
 .why-v2 .section-tag {
-    color: var(--text-sub);
+    color: rgba(255, 255, 255, 0.5);
 }
 
 .why-v2 .section-title-v2 {
-    color: var(--text-highlight);
+    color: var(--white);
 }
 
 .why-v2 .section-title-v2 .highlight {
-    color: var(--text-highlight);
+    color: #A8C5E2;
 }
 
 .why-grid {
@@ -3667,15 +3650,14 @@ p, li{
 
 .why-card {
     padding: 32px 24px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 12px;
-    background: var(--bg-card);
 }
 
 .why-number {
     font-size: 13px;
     font-weight: 600;
-    color: var(--text-sub);
+    color: rgba(255, 255, 255, 0.4);
     letter-spacing: 2px;
     margin-bottom: 16px;
 }
@@ -3684,17 +3666,16 @@ p, li{
     font-size: 20px;
     font-weight: 700;
     margin-bottom: 12px;
-    color: var(--text-body);
 }
 
 .why-card p {
     font-size: 15px;
-    color: var(--text-sub);
+    color: rgba(255, 255, 255, 0.65);
     line-height: 1.7;
 }
 
 .why-card strong {
-    color: var(--text-body);
+    color: var(--white);
 }
 
 .why-philosophy {
@@ -3707,17 +3688,17 @@ p, li{
 
 .why-philosophy p {
     font-size: 18px;
-    color: var(--text-sub);
+    color: rgba(255, 255, 255, 0.7);
     margin-bottom: 8px;
 }
 
 .why-philosophy strong {
-    color: var(--text-body);
+    color: var(--white);
 }
 
 /* 3. 실제 결과 v2 */
 .results-v2 {
-    background: var(--bg-main);
+    background: var(--white);
     padding: 100px 24px;
 }
 
@@ -3729,13 +3710,13 @@ p, li{
 
 .results-note p {
     font-size: 17px;
-    color: var(--text-sub);
+    color: var(--text-gray);
     line-height: 1.75;
     margin-bottom: 8px;
 }
 
 .results-note strong {
-    color: var(--text-body);
+    color: var(--text-dark);
 }
 
 .story-grid-v2 {
@@ -3747,8 +3728,8 @@ p, li{
 }
 
 .story-card-v2 {
-    background: var(--bg-card);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: var(--bg-main);
+    border: 1px solid var(--border);
     border-radius: 12px;
     padding: 28px 24px;
 }
@@ -3762,8 +3743,8 @@ p, li{
 
 .story-header-v2 .story-location {
     font-size: 12px;
-    color: var(--text-body);
-    background: rgba(255, 255, 255, 0.1);
+    color: var(--primary);
+    background: rgba(31, 58, 95, 0.08);
     padding: 4px 10px;
     border-radius: 4px;
     font-weight: 600;
@@ -3772,23 +3753,23 @@ p, li{
 .story-header-v2 .story-name {
     font-size: 15px;
     font-weight: 600;
-    color: var(--text-body);
+    color: var(--text-dark);
 }
 
 .story-result {
     font-size: 22px;
     font-weight: 700;
-    color: var(--text-body);
+    color: var(--text-dark);
     margin-bottom: 8px;
 }
 
 .story-result strong {
-    color: var(--text-highlight);
+    color: var(--primary);
 }
 
 .story-detail {
     font-size: 14px;
-    color: var(--text-sub);
+    color: var(--text-light);
     line-height: 1.6;
     margin-bottom: 16px;
 }
@@ -3798,24 +3779,23 @@ p, li{
     max-width: 560px;
     margin: 48px auto 0;
     padding: 32px 24px;
-    background: var(--bg-card);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--primary);
     border-radius: 12px;
 }
 
 .results-bottom p {
     font-size: 18px;
-    color: var(--text-sub);
+    color: rgba(255, 255, 255, 0.85);
     line-height: 1.7;
 }
 
 .results-bottom strong {
-    color: var(--text-body);
+    color: var(--white);
 }
 
 /* 비디오 v2 */
 .video-v2 {
-    background: var(--bg-section-alt);
+    background: var(--bg-main);
     padding: 80px 24px;
 }
 
@@ -3827,20 +3807,20 @@ p, li{
 .video-desc {
     text-align: center;
     font-size: 16px;
-    color: var(--text-sub);
+    color: var(--text-light);
     margin-bottom: 40px;
 }
 
 /* 4. 프로필 v2 */
 .profile-v2 {
-    background: var(--bg-main);
+    background: var(--white);
     padding: 100px 24px;
 }
 
 .profile-subtitle-v2 {
     text-align: center;
     font-size: 16px;
-    color: var(--text-sub);
+    color: var(--text-light);
     margin-top: -28px;
     margin-bottom: 48px;
 }
@@ -3858,18 +3838,17 @@ p, li{
     width: 100%;
     border-radius: 12px;
     object-fit: cover;
-    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .profile-intro-v2 {
     font-size: 18px;
-    color: var(--text-sub);
+    color: var(--text-gray);
     line-height: 1.7;
     margin-bottom: 24px;
 }
 
 .profile-intro-v2 strong {
-    color: var(--text-body);
+    color: var(--text-dark);
 }
 
 .profile-stats {
@@ -3883,30 +3862,30 @@ p, li{
 
 .profile-stats li {
     font-size: 15px;
-    color: var(--text-sub);
-    background: var(--bg-card);
+    color: var(--text-gray);
+    background: var(--bg-main);
     padding: 10px 16px;
     border-radius: 6px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--border);
 }
 
 .profile-stats li strong {
-    color: var(--text-body);
+    color: var(--primary);
 }
 
 .profile-method {
     font-size: 17px;
-    color: var(--text-sub);
+    color: var(--text-gray);
     line-height: 1.7;
 }
 
 .profile-method strong {
-    color: var(--text-body);
+    color: var(--text-dark);
 }
 
 /* 5. 적합성 v2 */
 .fit-v2 {
-    background: var(--bg-section-alt);
+    background: var(--bg-main);
     padding: 100px 24px;
 }
 
@@ -3921,14 +3900,12 @@ p, li{
 .fit-card {
     padding: 32px 28px;
     border-radius: 12px;
-    background: var(--bg-card);
 }
 
 .fit-card h3 {
     font-size: 18px;
     font-weight: 700;
     margin-bottom: 20px;
-    color: var(--text-body);
 }
 
 .fit-card ul {
@@ -3943,7 +3920,6 @@ p, li{
     margin-bottom: 12px;
     padding-left: 20px;
     position: relative;
-    color: var(--text-sub);
 }
 
 .fit-card li::before {
@@ -3951,48 +3927,45 @@ p, li{
     position: absolute;
     left: 4px;
     font-weight: 700;
-    color: var(--text-body);
 }
 
 .fit-card li strong {
     font-weight: 600;
-    color: var(--text-body);
 }
 
 .fit-good {
-    background: var(--bg-card);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: var(--white);
+    border: 1px solid var(--primary);
 }
 
 .fit-good h3 {
-    color: var(--text-body);
+    color: var(--primary);
 }
 
 .fit-good li {
-    color: var(--text-sub);
+    color: var(--text-gray);
 }
 
 .fit-good li::before {
-    color: var(--text-body);
+    color: var(--primary);
 }
 
 .fit-not {
-    background: var(--bg-card);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: var(--white);
+    border: 1px solid var(--border);
 }
 
 .fit-not h3 {
-    color: var(--text-sub);
+    color: var(--text-light);
 }
 
 .fit-not li {
-    color: var(--text-sub);
-    opacity: 0.8;
+    color: var(--text-light);
 }
 
 .fit-desc {
     font-size: 16px;
-    color: var(--text-sub);
+    color: var(--text-gray);
     line-height: 1.8;
     margin-bottom: 16px;
 }
@@ -4002,28 +3975,27 @@ p, li{
 }
 
 .fit-desc strong {
-    color: var(--text-body);
+    color: var(--primary);
     font-weight: 600;
 }
 
 .fit-good .fit-desc {
-    color: var(--text-sub);
+    color: var(--text-dark);
 }
 
 .fit-not .fit-desc {
-    color: var(--text-sub);
-    opacity: 0.8;
+    color: var(--text-light);
 }
 
 /* 6. 가격 v2 */
 .pricing-v2 {
-    background: var(--bg-main);
+    background: var(--white);
     padding: 100px 24px;
 }
 
 .price-subtitle {
     font-size: 18px;
-    color: var(--text-sub);
+    color: var(--text-gray);
     text-align: center;
     margin-top: -8px;
     margin-bottom: 40px;
@@ -4034,8 +4006,7 @@ p, li{
     max-width: 480px;
     margin: 0 auto 40px;
     padding: 40px 32px;
-    background: var(--bg-card);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: var(--primary);
     border-radius: 16px;
 }
 
@@ -4046,20 +4017,20 @@ p, li{
 .price-number {
     font-size: 64px;
     font-weight: 900;
-    color: var(--text-highlight);
+    color: var(--white);
     letter-spacing: -2px;
 }
 
 .price-unit {
     font-size: 28px;
     font-weight: 700;
-    color: var(--text-highlight);
+    color: var(--white);
     margin-left: 4px;
 }
 
 .price-note {
     font-size: 14px;
-    color: var(--text-sub);
+    color: rgba(255, 255, 255, 0.6);
     margin-bottom: 20px;
 }
 
@@ -4071,26 +4042,26 @@ p, li{
 
 .price-meta span {
     font-size: 14px;
-    color: var(--text-sub);
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .price-meta strong {
-    color: var(--text-body);
+    color: var(--white);
 }
 
 .included-box {
     max-width: 560px;
     margin: 0 auto 40px;
     padding: 32px 28px;
-    background: var(--bg-card);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--bg-main);
+    border: 1px solid var(--border);
     border-radius: 12px;
 }
 
 .included-box h3 {
     font-size: 16px;
     font-weight: 700;
-    color: var(--text-body);
+    color: var(--text-dark);
     margin-bottom: 20px;
     text-align: center;
 }
@@ -4103,9 +4074,9 @@ p, li{
 
 .included-box li {
     font-size: 15px;
-    color: var(--text-sub);
+    color: var(--text-gray);
     padding: 10px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid var(--border);
     padding-left: 24px;
     position: relative;
 }
@@ -4463,13 +4434,13 @@ p, li{
 
 .cta-trigger {
     font-size: 17px;
-    color: var(--text-sub);
+    color: var(--text-gray);
     line-height: 1.7;
     margin-bottom: 32px;
 }
 
 .cta-trigger strong {
-    color: var(--text-body);
+    color: var(--text-dark);
 }
 
 .cta-final {
@@ -4499,7 +4470,7 @@ p, li{
 
 /* FAQ v2 */
 .faq-v2 {
-    background: var(--bg-section-alt);
+    background: var(--bg-main);
     padding: 80px 24px;
 }
 
@@ -4509,8 +4480,8 @@ p, li{
 }
 
 .faq-item-v2 {
-    background: var(--bg-card);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: var(--white);
+    border: 1px solid var(--border);
     border-radius: 10px;
     padding: 24px 28px;
     margin-bottom: 16px;
@@ -4519,18 +4490,18 @@ p, li{
 .faq-item-v2 h3 {
     font-size: 16px;
     font-weight: 600;
-    color: var(--text-body);
+    color: var(--text-dark);
     margin-bottom: 10px;
 }
 
 .faq-item-v2 p {
     font-size: 15px;
-    color: var(--text-sub);
+    color: var(--text-gray);
     line-height: 1.65;
 }
 
 .faq-item-v2 strong {
-    color: var(--text-body);
+    color: var(--primary);
 }
 
 /* ============================================
@@ -4731,16 +4702,16 @@ p, li{
 .review-card {
     flex-shrink: 0;
     width: 320px;
-    background: var(--bg-card);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: var(--white);
+    border: 1px solid var(--border);
     border-radius: 16px;
     padding: 28px 24px;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .review-card:hover {
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    border-color: var(--primary-light);
+    box-shadow: 0 4px 20px rgba(31, 58, 95, 0.08);
 }
 
 .review-card-header {
@@ -4753,8 +4724,8 @@ p, li{
 .review-location {
     font-size: 12px;
     font-weight: 600;
-    color: var(--text-body);
-    background: rgba(255, 255, 255, 0.1);
+    color: var(--primary);
+    background: rgba(31, 58, 95, 0.08);
     padding: 4px 10px;
     border-radius: 4px;
 }
@@ -4762,19 +4733,19 @@ p, li{
 .review-name {
     font-size: 15px;
     font-weight: 600;
-    color: var(--text-body);
+    color: var(--text-dark);
 }
 
 .review-content {
     font-size: 14px;
-    color: var(--text-sub);
+    color: var(--text-gray);
     line-height: 1.75;
     margin-bottom: 20px;
     min-height: 100px;
 }
 
 .review-content strong {
-    color: var(--text-body);
+    color: var(--primary);
     font-weight: 600;
 }
 
@@ -4787,24 +4758,24 @@ p, li{
 .review-card .review-btn {
     font-size: 12px;
     padding: 8px 14px;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: var(--bg-main);
+    border: 1px solid var(--border);
     border-radius: 6px;
-    color: var(--text-sub);
+    color: var(--text-gray);
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
 .review-card .review-btn:hover {
-    background: rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 255, 255, 0.25);
-    color: var(--text-body);
+    background: var(--primary);
+    border-color: var(--primary);
+    color: var(--white);
 }
 
 .review-disclaimer {
     text-align: center;
     font-size: 13px;
-    color: var(--text-sub);
+    color: var(--text-light);
     margin-bottom: 40px;
 }
 
@@ -4863,14 +4834,14 @@ p, li{
    ============================================ */
 
 .pricing-mindset {
-    background: var(--bg-section-alt);
+    background: #FAFAFA;
     padding: 88px 24px;
 }
 
 .mindset-title {
     font-size: clamp(26px, 5vw, 38px);
     font-weight: 700;
-    color: var(--text-highlight);
+    color: var(--text-dark);
     text-align: center;
     margin-bottom: 48px;
     line-height: 1.35;
@@ -4884,23 +4855,23 @@ p, li{
 
 .mindset-content p {
     font-size: 18px;
-    color: var(--text-sub);
+    color: var(--text-gray);
     line-height: 1.85;
     margin-bottom: 28px;
 }
 
 .mindset-content strong {
-    color: var(--text-body);
+    color: var(--text-dark);
     font-weight: 600;
 }
 
 .mindset-emphasis {
     font-size: 20px !important;
-    color: var(--text-body) !important;
+    color: var(--primary) !important;
     font-weight: 600;
     margin-top: 40px !important;
     padding-top: 32px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid var(--border);
 }
 
 .mindset-closing {
@@ -4908,20 +4879,20 @@ p, li{
     margin: 48px auto 0;
     text-align: center;
     padding: 28px 24px;
-    background: var(--bg-card);
+    background: var(--white);
     border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--border);
 }
 
 .mindset-closing p {
     font-size: 17px;
-    color: var(--text-sub);
+    color: var(--text-gray);
     line-height: 1.75;
     margin: 0;
 }
 
 .mindset-closing strong {
-    color: var(--text-body);
+    color: var(--primary);
     font-weight: 600;
 }
 
@@ -4984,39 +4955,38 @@ p, li{
 
 
 /* ============================================
-   Final CTA 문구 스타일 - No Red Text
+   Urgent/Warning 스타일 - 긴박성 강조
    ============================================ */
 
-/* 상단 메시지 - 흰색, 굵게 */
+/* 긴급 텍스트 강조 */
 .urgent-text {
-    color: var(--text-highlight);
+    color: var(--urgent-red);
     font-weight: 700;
-    font-size: 1.2em;
 }
 
-/* 경고/압박 문구 - 밝은 회백색, 빨간색 금지 */
+/* 긴급 경고 문구 */
 .urgent-warning {
-    color: var(--text-body);
+    color: var(--urgent-red);
     font-size: 18px;
-    font-weight: 500;
+    font-weight: 600;
     margin: 20px 0 28px;
     line-height: 1.6;
 }
 
-/* CTA 버튼 - 레드(버튼에만 사용) */
+/* 긴급 CTA 버튼 - 레드 */
 .cta-button.cta-urgent {
-    background: var(--cta-red);
+    background: var(--urgent-red);
     border: none;
-    color: var(--text-highlight);
+    color: var(--white);
     font-weight: 700;
     letter-spacing: 0.5px;
-    box-shadow: 0 4px 14px rgba(229, 57, 53, 0.3);
+    box-shadow: 0 4px 14px rgba(220, 38, 38, 0.3);
 }
 
 .cta-button.cta-urgent:hover {
-    background: var(--cta-red-hover);
+    background: var(--urgent-red-hover);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(229, 57, 53, 0.4);
+    box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4);
 }
 
 /* 모바일 대응 */
