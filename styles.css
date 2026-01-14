@@ -4056,45 +4056,35 @@ p, li{
     background: var(--bg-main);
     border: 1px solid var(--border);
     border-radius: 12px;
-}
-
-.included-box h3 {
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--text-dark);
-    margin-bottom: 20px;
     text-align: center;
 }
 
-.included-box ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.included-box li {
-    font-size: 15px;
-    color: var(--text-gray);
-    padding: 10px 0;
-    border-bottom: 1px solid var(--border);
-    padding-left: 24px;
-    position: relative;
-}
-
-.included-box li:last-child {
-    border-bottom: none;
-}
-
-.included-box li::before {
-    content: '✓';
-    position: absolute;
-    left: 0;
-    color: var(--primary);
-    font-weight: 700;
-}
-
-.included-box li strong {
+.included-summary {
+    font-size: 17px;
     color: var(--text-dark);
+    font-weight: 600;
+    margin: 0 0 20px;
+    line-height: 1.5;
+}
+
+.detail-link-btn {
+    display: inline-block;
+    padding: 14px 28px;
+    background: var(--white);
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.detail-link-btn:hover {
+    background: var(--primary);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(31, 58, 95, 0.2);
 }
 
 /* 커리큘럼 토글 */
