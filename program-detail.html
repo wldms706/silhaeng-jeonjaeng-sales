@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>구성 & 정상가 상세 | 330만 원 오픈가 안내</title>
+  <meta name="description" content="콘텐츠&광고 풀패키지, 홈페이지 제작, 블로그 시스템, 실행관리까지 포함된 구성과 정상가를 한눈에 정리했습니다." />
+  <style>
+    :root{
+      --bg:#0f0b0c;
+      --card:#151012;
+      --text:#f6f1f3;
+      --muted:#cbb8bf;
+      --line:rgba(255,255,255,.12);
+      --burgundy:#6b1f2a;
+      --burgundy2:#8b2a38;
+      --radius:18px;
+      --shadow:0 18px 50px rgba(0,0,0,.45);
+      --max:980px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Apple SD Gothic Neo","Noto Sans KR", sans-serif;
+      background: radial-gradient(1200px 600px at 30% 0%, rgba(107,31,42,.35), transparent 60%),
+                  radial-gradient(900px 500px at 80% 20%, rgba(139,42,56,.22), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+    a{color:inherit; text-decoration:none}
+    .container{max-width:var(--max); margin:0 auto; padding:24px}
+    .topbar{
+      position:sticky; top:0; backdrop-filter: blur(14px);
+      background: rgba(15,11,12,.65);
+      border-bottom:1px solid var(--line);
+      z-index:20;
+    }
+    .topbar__inner{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px; padding:14px 24px;
+      max-width:var(--max); margin:0 auto;
+    }
+    .brand{font-weight:800; letter-spacing:-.02em}
+    .nav a{opacity:.9; font-size:14px; padding:10px 12px; border-radius:999px}
+    .nav a:hover{background:rgba(255,255,255,.06)}
+    .hero{
+      padding:36px 0 8px;
+    }
+    .kicker{
+      display:inline-block;
+      padding:8px 12px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      font-size:13px;
+      color:var(--muted);
+      background: rgba(255,255,255,.04);
+    }
+    h1{
+      margin:14px 0 10px;
+      font-size: clamp(28px, 5vw, 44px);
+      line-height:1.15;
+      letter-spacing:-.03em;
+    }
+    .lead{
+      margin:0;
+      color:var(--muted);
+      font-size:16px;
+      max-width: 60ch;
+    }
+
+    /* 한 줄 요약 + 오픈가 강조 배너 */
+    .price-banner{
+      margin: 24px 0;
+      padding: 24px 20px;
+      background: linear-gradient(135deg, rgba(107,31,42,.5), rgba(139,42,56,.35));
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: var(--radius);
+      text-align: center;
+    }
+    .price-banner__main{
+      font-size: clamp(20px, 4vw, 28px);
+      font-weight: 900;
+      margin: 0 0 8px;
+      letter-spacing: -.02em;
+    }
+    .price-banner__strike{
+      color: rgba(246,241,243,.6);
+      text-decoration: line-through;
+      text-decoration-thickness: 2px;
+      text-decoration-color: rgba(246,241,243,.3);
+    }
+    .price-banner__highlight{
+      background: linear-gradient(90deg, #ff9a9e, #fad0c4);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .price-banner__sub{
+      margin: 0;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:14px;
+      margin-top:22px;
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow: var(--shadow);
+      padding:18px;
+    }
+    .card.card-highlight{
+      background: linear-gradient(180deg, rgba(107,31,42,.15), rgba(255,255,255,.04));
+      border-color: rgba(139,42,56,.4);
+    }
+    .card h3{
+      margin:0 0 6px;
+      font-size:18px;
+      letter-spacing:-.02em;
+    }
+    .card-desc{
+      margin: 0 0 10px;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+      padding: 10px 12px;
+      background: rgba(255,255,255,.03);
+      border-radius: 10px;
+      border-left: 3px solid rgba(139,42,56,.5);
+    }
+    .card ul{margin:10px 0 0; padding-left:18px; color:var(--muted)}
+    .card li{margin-bottom:4px}
+    .price{
+      margin-top:12px;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:10px; flex-wrap:wrap;
+      padding-top:12px;
+      border-top:1px dashed rgba(255,255,255,.18);
+    }
+    .tag{
+      display:inline-flex; align-items:center; gap:8px;
+      font-size:13px; color:var(--muted);
+      padding:7px 10px; border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+    }
+    .tag-included{
+      background: linear-gradient(135deg, rgba(107,31,42,.4), rgba(139,42,56,.3));
+      border-color: rgba(139,42,56,.5);
+      color: var(--text);
+    }
+    .amount{font-weight:900; font-size:18px}
+    .summary{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:12px;
+    }
+    .summary .card{padding:20px}
+    .big{
+      font-size: clamp(22px, 4vw, 34px);
+      font-weight:900;
+      margin:0;
+      letter-spacing:-.03em;
+    }
+    .strike{
+      color:rgba(246,241,243,.75);
+      text-decoration: line-through;
+      text-decoration-thickness: 2px;
+      text-decoration-color: rgba(246,241,243,.35);
+      font-weight:700;
+    }
+    .highlight{
+      background: linear-gradient(90deg, var(--burgundy), var(--burgundy2));
+      -webkit-background-clip:text; background-clip:text;
+      color:transparent;
+    }
+    .cta{
+      margin:18px 0 40px;
+      background: linear-gradient(135deg, rgba(107,31,42,.35), rgba(255,255,255,.04));
+      border:1px solid rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      padding:20px;
+      display:flex; gap:14px; align-items:center; justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:12px 14px; border-radius:12px;
+      font-weight:800; font-size:15px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      min-width: 180px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,.3);
+    }
+    .btn-primary{
+      border-color: rgba(107,31,42,.55);
+      background: linear-gradient(135deg, rgba(107,31,42,.95), rgba(139,42,56,.95));
+      box-shadow: 0 16px 40px rgba(107,31,42,.25);
+    }
+    .btn-primary:hover{
+      box-shadow: 0 20px 50px rgba(107,31,42,.35);
+    }
+    .note{color:var(--muted); font-size:13px; margin:8px 0 0}
+    .footer{
+      border-top:1px solid var(--line);
+      padding:22px 0 44px;
+      color:rgba(246,241,243,.72);
+      font-size:13px;
+    }
+    @media (min-width: 860px){
+      .grid{grid-template-columns: 1fr 1fr}
+      .summary{grid-template-columns: 1fr 1fr}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="topbar__inner">
+      <div class="brand">실행 메이킹</div>
+      <div class="nav">
+        <a href="./index.html">← 메인으로</a>
+      </div>
+    </div>
+  </div>
+
+  <main class="container">
+    <section class="hero">
+      <span class="kicker">구성 & 정상가 상세</span>
+      <h1>
+        이 프로그램은<br/>
+        <span class="highlight">"330만 원짜리 강의"가 아닙니다</span>
+      </h1>
+      <p class="lead">
+        원래는 각각 따로 맡겨야 하는 작업들을 한 번에 묶어,
+        <b>촬영 → 노출 → 광고 → 문의 → 매출</b> 흐름이 실제로 돌아가게 만드는 실행 패키지입니다.
+      </p>
+    </section>
+
+    <!-- 한 줄 요약 + 정상가 대비 오픈가 강조 배너 -->
+    <section class="price-banner">
+      <p class="price-banner__main">
+        <span class="price-banner__strike">정상가 800만 원 상당</span> → 이번 기수 <span class="price-banner__highlight">330만 원</span>
+      </p>
+      <p class="price-banner__sub">
+        강의가 아니라, 촬영·노출·광고·블로그·홈페이지·실행관리까지<br>
+        실제로 굴려주는 실행 패키지
+      </p>
+    </section>
+
+    <section class="grid" aria-label="구성 상세">
+      <!-- ① 콘텐츠 & 광고 풀패키지 -->
+      <article class="card card-highlight">
+        <h3>① 콘텐츠 & 광고 풀패키지</h3>
+        <p class="card-desc">
+          광고를 돌리기 위한 콘텐츠 + 매장에 남는 콘텐츠 자산을 동시에 만드는 패키지.<br>
+          한 번 찍고 끝이 아니라, <strong>매출과 자산을 동시에 확보</strong>하는 구조입니다.
+        </p>
+        <ul>
+          <li>매장 방문 촬영 포함</li>
+          <li>광고용 콘텐츠 기획 → 촬영 → 편집 → 메타 광고 집행</li>
+          <li>광고 효율을 위한 픽셀 세팅 포함</li>
+          <li>추가 촬영으로 운영/브랜딩용 숏폼 콘텐츠 제작</li>
+          <li>광고용 + 운영용 콘텐츠를 동시에 확보</li>
+        </ul>
+        <div class="price">
+          <span class="tag">정상가</span>
+          <span class="amount">2,000,000원</span>
+        </div>
+      </article>
+
+      <!-- ② 홈페이지 + 검색노출 -->
+      <article class="card">
+        <h3>② 홈페이지 제작 + 네이버 검색 노출</h3>
+        <ul>
+          <li>매장 홈페이지 제작</li>
+          <li>네이버 검색 노출 등록(서치 등록)</li>
+          <li>광고 효율을 위한 픽셀 연동</li>
+        </ul>
+        <div class="price">
+          <span class="tag">정상가</span>
+          <span class="amount">3,000,000원</span>
+        </div>
+      </article>
+
+      <!-- ③ 블로그 매출 시스템 -->
+      <article class="card">
+        <h3>③ 블로그 매출 시스템 패키지</h3>
+        <ul>
+          <li>블로그 주 2회 피드백</li>
+          <li>블로그 기자단 15명 운영</li>
+          <li>매출 부르는 블로그 글쓰기 전용 GPT 제공</li>
+        </ul>
+        <div class="price">
+          <span class="tag">정상가(패키지)</span>
+          <span class="amount">1,000,000원 상당</span>
+        </div>
+      </article>
+
+      <!-- ④ 실행관리 & 코칭 -->
+      <article class="card">
+        <h3>④ 실행관리 & 코칭</h3>
+        <ul>
+          <li>1–4주 매일 실행 관리</li>
+          <li>매주 월요일 그룹 줌 수업</li>
+          <li>별도 1:1 줌 미팅 진행</li>
+        </ul>
+        <div class="price">
+          <span class="tag">정상가</span>
+          <span class="amount">2,000,000원</span>
+        </div>
+      </article>
+    </section>
+
+    <section class="summary" aria-label="가격 요약">
+      <div class="card">
+        <p class="kicker">정상가 총합</p>
+        <p class="big"><span class="strike">약 8,000,000원 상당</span></p>
+        <p class="note">* 정상가 표기는 항목별 외주/대행 기준의 가치 비교용 안내입니다.</p>
+      </div>
+
+      <div class="card">
+        <p class="kicker">이번 기수 오픈가</p>
+        <p class="big"><span class="highlight">3,300,000원</span></p>
+        <p class="note">* "알려주고 끝"이 아니라, 매출 흐름이 실제로 돌아가게 같이 굴리는 패키지입니다.</p>
+      </div>
+    </section>
+
+    <section class="cta" aria-label="CTA">
+      <div>
+        <p class="kicker">다음 단계</p>
+        <p style="margin:10px 0 0; color:var(--muted);">
+          신청 전에, 지금 매장 상황에 이 패키지가 맞는지 먼저 확인해요.
+        </p>
+      </div>
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <a class="btn btn-primary" href="./index.html#apply">신청 가능 여부 확인하기</a>
+        <a class="btn" href="./index.html#contact">상담 먼저 받아보기</a>
+      </div>
+    </section>
+
+    <div class="footer">
+      * 정상가 표기는 항목별 외주/대행 기준의 가치 비교용 안내입니다.
+    </div>
+  </main>
+
+</body>
+</html>
