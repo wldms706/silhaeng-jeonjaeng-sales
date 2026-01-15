@@ -5346,11 +5346,16 @@ p, li{
 }
 
 #schedule .scheduleItem.highlight{
-  background: rgba(255,255,255,0.10) !important;
-  border-color: rgba(255,255,255,0.22) !important;
+  background: linear-gradient(135deg, rgba(59,130,246,0.35), rgba(99,102,241,0.25)) !important;
+  border: 2px solid rgba(99,102,241,0.6) !important;
+  box-shadow: 0 4px 20px rgba(59,130,246,0.3) !important;
+}
+#schedule .scheduleItem.highlight .scheduleLabel{
+  color: #93C5FD !important;
 }
 #schedule .scheduleItem.highlight .scheduleValue{
   color: #FFFFFF !important;
+  font-size: 16px !important;
 }
 
 #schedule .scheduleNote{
