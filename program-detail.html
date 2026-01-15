@@ -137,6 +137,37 @@
     }
     .card ul{margin:10px 0 0; padding-left:18px; color:var(--muted)}
     .card li{margin-bottom:4px}
+    .sample-videos{
+      margin-top:16px;
+      padding:16px;
+      background: rgba(255,255,255,.03);
+      border-radius:12px;
+      border:1px solid var(--line);
+    }
+    .sample-title{
+      margin:0 0 12px;
+      font-size:14px;
+      font-weight:700;
+      color:var(--text);
+      text-align:center;
+    }
+    .video-grid{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:10px;
+    }
+    .video-grid video{
+      width:100%;
+      aspect-ratio:9/16;
+      object-fit:cover;
+      border-radius:8px;
+    }
+    @media(max-width:600px){
+      .video-grid{
+        grid-template-columns:repeat(3, 1fr);
+        gap:6px;
+      }
+    }
     .price{
       margin-top:12px;
       display:flex; align-items:center; justify-content:space-between;
@@ -275,6 +306,14 @@
           <li>추가 촬영으로 운영/브랜딩용 숏폼 콘텐츠 제작</li>
           <li>광고용 + 운영용 콘텐츠를 동시에 확보</li>
         </ul>
+        <div class="sample-videos">
+          <p class="sample-title">이런 콘텐츠 × 4개 만들어드립니다</p>
+          <div class="video-grid">
+            <video src="kiiara.mp4" autoplay loop muted playsinline></video>
+            <video src="mandzhandz.mp4" autoplay loop muted playsinline></video>
+            <video src="orda.mp4" autoplay loop muted playsinline></video>
+          </div>
+        </div>
         <div class="price">
           <span class="tag">정상가</span>
           <span class="amount">2,000,000원</span>
