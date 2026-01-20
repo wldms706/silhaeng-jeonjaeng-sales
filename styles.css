@@ -5375,3 +5375,27 @@ p, li{
   #schedule .scheduleGrid{ grid-template-columns:1fr !important; }
   #schedule .scheduleInner{ padding:16px 14px; }
 }
+
+
+/* ============================================
+   Tally 신청폼 스타일
+   ============================================ */
+.tally-form-wrapper {
+    margin-top: 40px;
+    padding: 32px;
+    background: var(--white);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.tally-form-wrapper iframe {
+    min-height: 400px;
+}
+
+@media (max-width: 768px) {
+    .tally-form-wrapper {
+        padding: 20px 16px;
+        margin-top: 32px;
+    }
+}
